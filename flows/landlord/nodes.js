@@ -145,10 +145,10 @@ const landlordNodes=[
         ],
         transitions:[
             {
-                name:'ask_has_own_bathroom',
+                name:'ask_own_bathroom_availability',
                 actions:'savePropertyType',
                 flow:'landlord', 
-                node:'ask_has_own_bathroom',
+                node:'ask_own_bathroom_availability',
                 catchNode:'none',
                 trigger:""
             }
@@ -172,10 +172,10 @@ const landlordNodes=[
         transitions:[
            
             {
-                name:'ask_has_own_bathroom',
+                name:'ask_own_bathroom_availability',
                 actions:'savePropertyType',
                 flow:'landlord', 
-                node:'ask_has_own_bathroom',
+                node:'ask_own_bathroom_availability',
                 catchNode:'none',
                 trigger:""
             }
@@ -186,14 +186,14 @@ const landlordNodes=[
     
     },
     {
-        name:'ask_has_own_bathroom',
+        name:'ask_own_bathroom_availability',
         flow:'landlord',
-        node:'ask_has_own_bathroom',
+        node:'ask_own_bathroom_availability',
         actions:'hasOwnBathroom',
         uis:[
             {
                 type:'interactive',
-                name:'ask_has_own_bathroom'
+                name:'ask_own_bathroom_availability'
             },
         ],
         transitions:[
