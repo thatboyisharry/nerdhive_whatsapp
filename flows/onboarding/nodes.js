@@ -14,10 +14,10 @@ const onboardingNodes=[
         ],
         transitions:[
             {
-                name:'parent_or_learner',
+                name:'landlord_or_renter',
                 function:'saveName',
                 flow:'onboarding', 
-                node:'parent_or_learner',
+                node:'landlord_or_renter',
                 catchNode:'none'
             }
         ],
@@ -26,11 +26,11 @@ const onboardingNodes=[
     },
     ///////////////////////////////
     {
-        name:'parent_or_learner',
+        name:'landlord_or_renter',
         flow:'onboarding',
         uis:[{
             type:'interactive',
-            name:"parent_or_learner"
+            name:"landlord_or_renter"
         }],
         transitions:[
             {

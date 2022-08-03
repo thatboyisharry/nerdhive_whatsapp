@@ -1,13 +1,10 @@
 
-const { onboardingMenuFlow } = require("./onboardingMenu/flow");
-
+const { onboarding } = require("./onboarding/flow");
+const { landlord } = require("./landlord/flow");
 
 const Flows = [
-      onboardingMenuFlow,
-      onboardingLearnerFlow,
-      onboardingParentFlow,
-      parent_questionnaireFlow,
-      learner_questionnaireFlow
+      onboarding,
+      landlord
   ]
 module.exports = {
     Flows
