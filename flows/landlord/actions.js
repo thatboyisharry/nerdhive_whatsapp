@@ -1,5 +1,5 @@
 const Property = require("../../models/property.model");
-const {getProperty} = require("../../apiCalls");
+const {getProperty} = require("../../dialogEngine/apiCalls");
 require("../../messages/templates");
 
 
