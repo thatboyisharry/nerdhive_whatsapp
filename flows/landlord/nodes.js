@@ -1,6 +1,6 @@
 const landlordNodes=[
     {
-        name:'start',
+        name:'ask_province',
         flow:'landlord',
         node:'ask_province',
         actions:'saveProvince',

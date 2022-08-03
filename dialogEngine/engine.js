@@ -5,7 +5,7 @@ const User = require('../models/user.model');
 const { onboardUser} = require("../services/onboarding.services");
 const { askName, parent_or_learner, start, what_grade_learner, what_grade_parent } = require("../flows/onboarding/ui")
 const { getUserResponse, getMessages, getTransition, getFlow, getNode } = require('./utils');
-const { onboarding_menu } = require("../flows/onboardingMenu/ui")
+
 
 
 
@@ -229,21 +229,7 @@ const updateUser=async(user,data)=>{
   }
 }
 
-const askUserName=()=>{
 
-     let bot_response={
-            messaging_product: "whatsapp",
-            recipient_type:"individual",
-            to:'', 
-            type:'interactive'
-      }
-  
-  
-    bot_response.interactive= onboarding_menu.value;
-    console.log("sections")
-    console.log(bot_response.interactive.action)
-    return bot_response
-}
 
 module.exports={
     getBotResponses,

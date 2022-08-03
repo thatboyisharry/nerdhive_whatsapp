@@ -2,6 +2,7 @@ const onboardingNodes=[
     {
         name:'start',
         flow:'onboarding',
+        actions:"savaName",
         uis:[
             {
                 type:'text',
@@ -15,10 +16,11 @@ const onboardingNodes=[
         transitions:[
             {
                 name:'landlord_or_renter',
-                function:'saveName',
+                actions:'saveName',
                 flow:'onboarding', 
                 node:'landlord_or_renter',
-                catchNode:'none'
+                catchNode:'none',
+                triger:""
             }
         ],
         catch:""
@@ -28,65 +30,32 @@ const onboardingNodes=[
     {
         name:'landlord_or_renter',
         flow:'onboarding',
+        actions:"",
         uis:[{
             type:'interactive',
             name:"landlord_or_renter"
         }],
         transitions:[
             {
-                name:'learner',
-                node:'what_grade_learner',
-                function:'isLearner',
-                flow:'onboarding', 
-                catchNode:'none'
+                name:'askProvince',
+                node:'askProvince',
+                function:'isLandlord',
+                flow:'landlord', 
+                catchNode:'none',
+                trigger:'landlord'
             },
             {
-                name:'parent',
-                node:'what_grade_parent',
-                function:'isParent',
-                flow:'onboarding',
-                catchNode:'none'
+                name:'askProvince',
+                node:'askProvince',
+                function:'isRenter',
+                flow:'tenant',
+                catchNode:'none',
+                trugger:'renter'
             }
         ],
         catch:""
     },
-    ////////////////////////////////////////
-    {
-        name:'what_grade_learner',
-        uis:[{
-            type:'text',
-            name:"what_grade_learner"
-        }],
-        transitions:[
-            {
-                name:'start',
-                function:'saveGrade',
-                node:'start',
-                flow:'learner_questionnaire',
-                catchNode:'none'
-            }
-        ],
-        catch:""
-    },
-      ////////////////////////////////////////
-    {
-        name:'what_grade_parent',
-        uis:[{
-            type:'text',
-            name:"what_grade_parent"
-        }],
-        transitions:[
-            {
-                name:'start',
-                function:'saveGrade',
-                'node':'start',
-                flow:'parent_questionnaire',
-                catchNode:'none'
-            }
-        ],
-        catch:""
-    }
-     
+   
 ]
  
 module.exports={
