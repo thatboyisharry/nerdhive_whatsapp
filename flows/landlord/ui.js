@@ -29,35 +29,35 @@ ask_property_type.value.footer.text="Choose the type of property you are renting
 ask_property_type.value.action.button="Type of properties";
 
 ////////////////////////////////////////////////////////////////////////////////
-let gauteng_id="gauteng_id"
-let gauteng_title="Gauteng"
-let gauteng_description=""
-let gauteng_row = createRow(gauteng_id,gauteng_title,gauteng_description)
+// let gauteng_id="gauteng_id"
+// let gauteng_title="Gauteng"
+// let gauteng_description=""
+// let gauteng_row = createRow(gauteng_id,gauteng_title,gauteng_description)
 
-let limpopo_id="limpopo_id"
-let limpopo_title="Limpopo"
-let limpopo_description=""
-let limpopo_row = createRow(limpopo_id,limpopo_title,limpopo_description)
+// let limpopo_id="limpopo_id"
+// let limpopo_title="Limpopo"
+// let limpopo_description=""
+// let limpopo_row = createRow(limpopo_id,limpopo_title,limpopo_description)
 
-let free_state_id="free_state_id"
-let free_state_title="Free State"
-let free_state_description=""
-let free_state_row = createRow(free_state_id,free_state_title,free_state_description)
+// let free_state_id="free_state_id"
+// let free_state_title="Free State"
+// let free_state_description=""
+// let free_state_row = createRow(free_state_id,free_state_title,free_state_description)
 
 let north_west_id="north_west_id"
 let north_west_title="North West"
 let north_west_description=""
 let north_west_row = createRow(north_west_id,north_west_title,north_west_description)
 
-let northern_cape_id="northern_cape_id"
-let northern_cape_title="Northern Cape"
-let northern_cape_description=""
-let northern_cape_row = createRow(northern_cape_id,northern_cape_title,northern_cape_description)
+// let northern_cape_id="northern_cape_id"
+// let northern_cape_title="Northern Cape"
+// let northern_cape_description=""
+// let northern_cape_row = createRow(northern_cape_id,northern_cape_title,northern_cape_description)
 
-let western_cape_id="western_cape_id"
-let western_cape_title="Western Cape"
-let western_cape_description=""
-let western_cape_row = createRow(western_cape_id,western_cape_title,western_cape_description)
+// let western_cape_id="western_cape_id"
+// let western_cape_title="Western Cape"
+// let western_cape_description=""
+// let western_cape_row = createRow(western_cape_id,western_cape_title,western_cape_description)
 
 let eastern_cape_id="eastern_cape_id"
 let eastern_cape_title="Eastern Cape"
@@ -74,12 +74,18 @@ let mpumalanga_title="Mpumalanga"
 let mpumalanga_description=""
 let mpumalanga_row = createRow(mpumalanga_id,mpumalanga_title,mpumalanga_description)
 
-let province_section=createSection("provinces",[gauteng_row,kzn_row,western_cape_row,limpopo_row, free_state_row,north_west_row,northern_cape_row,mpumalanga_row,north_west_row,eastern_cape_row]);
+// let province_section=createSection("provinces",[gauteng_row,kzn_row,western_cape_row,limpopo_row, free_state_row,north_west_row,northern_cape_row,mpumalanga_row,north_west_row,eastern_cape_row]);
+let province_section=createSection("provinces",[mpumalanga_row,north_west_row,eastern_cape_row]);
 let ask_province = createInteractiveList("ask_province",[province_section]);
-ask_province.value.header.text="Select a province"
-ask_province.value.body.text=`What province is your property in ?`;
-ask_province.value.footer.text="Choose a province ";
-ask_province.value.action.button="Provinces";
+// ask_province.value.header.text="Province"
+// ask_province.value.body.text=`What province is your property in ?`;
+// ask_province.value.footer.text="Choose a province ";
+// ask_province.value.action.button="Options";
+
+ask_province.value.header.text="Getting started"
+ask_province.value.body.text=emoji.replace_colons(`Alright then :smile:, let us help you find tenants for your property.\nWhat kind of property are you renting ?`);
+ask_province.value.footer.text="Choose the type of property you are renting ";
+ask_province.value.action.button="Type of properties";
 
 ////////////////////////////////////////////////////////////
 let city_message = "In what city is your property located ?"
