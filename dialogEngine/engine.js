@@ -168,15 +168,15 @@ const getBotResponses=async(user,msg)=>{
          
        
         //excute transition node actions
-        if(transition.flow!==current_node.flow){
+        if(transition.flow===current_node.flow){
           let executed = await actionsHandler(current_node,user_response,user)
         }
       
       //Problem: solve for a case whereby the transition flow != current node flow
-        if(transition.actions!="none"){
-          console.log("excuting actions......")
-          let executed = await actionsHandler(transition,user_response,user)
-        }
+        // if(transition.actions!="none"){
+        //   console.log("excuting actions......")
+        //   let executed = await actionsHandler(transition,user_response,user)
+        // }
   
         responses = await getMessages(transition,user_response);
         isUpdated = await updateUserSession(user,transition)
