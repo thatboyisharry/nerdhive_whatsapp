@@ -1,168 +1,95 @@
-const User = require("../models/user.model");
-require("../messages/templates");
+const mongoose = require("mongoose");
 
 
+const Schema = mongoose.Schema;
 
-const onboardUser=async(user,msg)=>{
-  console.log("inside onboarding...")
-  //
-  if(!user.isOnboarding){
-     let onboarding=isOnboarding(user);
-  // change flow to onboarding flow
-      if(onboarding){
-      let isOnboardingFlow=await startOnboardingFlow(user);
-      if(isOnboardingFlow){
-        return true
-        }
-      }
-  }
-  
- 
-}
-
-
-const onboardingActions=async(action,user_response,user)=>{
-  let action_status
-  if(action==='isLearner'){
-    action_status = await isLearner(user);
-  }
-  if(action==='saveName'){
-    console.log("saving name")
-    action_status = await saveName(user,user_response);
-  }
-  if(action=='isParent'){
-    action_status = await isParent(user);
-  }
-  
-  if(action==="saveGrade"){
-    action_status = await saveGrade(user,user_response);
-  }
-  
-  if(action==="doneOnboarding"){
-    action_status = await doneOnboarding(user)
-  }
-  
-  return action_status
-}
-
-
-
-const isLearner=async(user)=>{
-  
-  let data={
-    isLearner:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-
-//////////////////
-const saveName=async(user,name)=>{
-  
-  let data={
-    name:name
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-////////////////////////////////////
-const saveGrade=async(user,grade)=>{
-  
-  let data={
-    grade:grade
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-/////////////////////////////////////
-
-const doneOnboarding=async(user)=>{
-  
-  let data={
-    isOnboarding:false,
-    isOnboarded:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-//////////////////////////
-const isParent=async(user)=>{
-  
-  let data={
-    isParent:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-
-/////////////////////
-const updateUser=async(user,data)=>{
-  try{
-     let updatedUser= await User.findByIdAndUpdate(user._id,data)
-      console.log("updated user")
-      console.log(data)
-      console.log(updatedUser)
-     return true;
-  
-    
-  }catch(error){
-    console.log(error);
-    return false;
-    
-  }
-}
-
-module.exports = {
-  onboardingActions,
-  updateUser
-}
-
-const isOnboarding=async(user)=>{
-  console.log("switching onboarding")
-  let data={
-    isOnboarding:true
-  }
-  return await updateUser(user,data);
-}
-
-const startOnboardingFlow=async(user)=>{
-  console.log("starting onboarding flow")
-  let date = new Date()
-  let data={
-    session:{
-      flow:'onboarding',
-      node:'start',
-      lastUpdated:date
+const FlowSchema = new Schema(
+    {
+        flow:{
+            type:String,
+            default:'onboarding',
+            required:true,
+        },
+        node:{
+            type:String,
+            default:'start'  
+            
+        },
+        lastUpdated:{
+            type:Date
+        },
     }
-  }
-  return await updateUser(user,data);
-}
+)
 
+const UserSchema = new Schema(
+  {
+    name: {
+      type: String,
+      default:null,
+      min: 3,
+      max: 20,
+      unique: true,
+    },
+    email: {
+      type: String,
+      max: 50,
+      unique: true,
+    },
+    password: {
+      type: String,
+      min: 6,
+    },
+    phone: {
+        type: String,
+        required: true,
+        min: 10,
+        max:11
+      },
+    type: {
+      type: String,
+      default: "",
+    },
 
-module.exports={
-  onboardUser
-}
+    isParent: {
+        type: Boolean,
+        default: false,
+      },
+
+    isLearner: {
+        type: Boolean,
+        default: false,
+    },
+    grade:{
+      type:String,
+      default: null
+    },
+
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isOnboarded: {
+      type: Boolean,
+      default: false,
+    },
+    isOnboarding: {
+      type: Boolean,
+      default: false,
+    },
+    desc: {
+      type: String,
+      max: 50,
+    },
+    session:{
+        type: FlowSchema,
+    },
+    city: {
+      type: String,
+      max: 50,
+    },
+    
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("User", UserSchema);
