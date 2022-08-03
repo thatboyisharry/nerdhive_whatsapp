@@ -1,8 +1,9 @@
 const onboardingNodes=[
     {
         name:'start',
+        node:'start',
         flow:'onboarding',
-        actions:"savaName",
+        actions:"none",
         uis:[
             {
                 type:'text',
@@ -16,7 +17,7 @@ const onboardingNodes=[
         transitions:[
             {
                 name:'landlord_or_renter',
-                actions:'saveName',
+                actions:'none',
                 flow:'onboarding', 
                 node:'landlord_or_renter',
                 catchNode:'none',
@@ -30,6 +31,7 @@ const onboardingNodes=[
     {
         name:'landlord_or_renter',
         flow:'onboarding',
+        node:'landlord_or_renter',
         actions:"",
         uis:[{
             type:'interactive',

@@ -1,10 +1,10 @@
 
-const { onboarding } = require("./onboarding/flow");
-const { landlord } = require("./landlord/flow");
+const { onboardingFlow } = require("./onboarding/flow");
+const { landlordFlow } = require("./landlord/flow");
 
 const Flows = [
-      onboarding,
-      landlord
+      onboardingFlow,
+      landlordFlow
   ]
 module.exports = {
     Flows
