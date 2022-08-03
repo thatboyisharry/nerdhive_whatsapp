@@ -98,7 +98,7 @@ const ask_address = createTextUI('ask_address',address_message);
 ///////////////////////////////////////////////////////////
 ////how many BackRooms 
 
-let one_id="one_room_id"
+let one_room_id="one_room_id"
 let one_title="One"
 let one_description=""
 let one_row = createRow(one_room_id,one_title,one_description)
@@ -156,9 +156,9 @@ ask_rooms_available.value.footer.text="";
 ask_rooms_available.value.action.button="Number of rooms";
 /////////////////////////////////////////////////
 //////************NO. of BEDROOMS*************** */
-let ask_bedrooms_available = createInteractiveList("ask_bedrooms_available",[nums_section]);
+let ask_bedrooms_available = createInteractiveList("ask_bedrooms_available",[province_section]);
 ask_bedrooms_available.value.header.text="Number of available bedrooms"
-ask_bedrooms_available.value.body.text=`How many bedrooms are currently available ?`;
+ask_bedrooms_available.value.body.text=`How many bedrooms does the property have ?`;
 ask_bedrooms_available.value.footer.text="";
 ask_bedrooms_available.value.action.button="Options";
 

@@ -125,7 +125,7 @@ const landlordNodes=[
                 flow:'landlord', 
                 node:'ask_bedrooms_available',
                 catchNode:'none',
-                trigger:""
+                trigger:"apartment"
             }
         ],
         catch:""
