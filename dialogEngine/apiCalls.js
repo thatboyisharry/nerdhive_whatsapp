@@ -1,6 +1,7 @@
 const { Flows } = require('../flows');
 
 const User = require('../models/user.model');
+const Property = require('../models/property.model');
 
 // const Flow = require('../models/flow.model');
 
@@ -17,6 +18,35 @@ const getUser = async(user_number)=>{
         console.log(error);
     }
 }
+
+const getProperty = async(user)=>{
+    try{
+        let property = await Property.findOne({ownerID:user._id})
+        if(property==null){
+            property = await addProperty(user._id);
+            return property;
+        }
+      console.log("found property")
+        return property
+    }catch(error){
+        console.log(error);
+    }
+}
+
+const addProperty=async(user_id)=>{
+
+     let property={
+         ownerID:user_id
+     }
+ 
+     try{
+         let newProperty= new Property(property);
+         let savedProperty = await newProperty.save(); 
+         return savedProperty;
+     }catch(error){
+         console.log(error)
+     }
+ }
 
 const updateUserSession = async (user,transition)=>{
   let date = new Date()
@@ -90,5 +120,6 @@ module.exports = {
     addUser,
     getFlow,
     getUser,
+    getProperty,
     updateUserSession
 }
