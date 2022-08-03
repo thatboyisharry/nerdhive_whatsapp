@@ -75,15 +75,11 @@ let mpumalanga_description=""
 let mpumalanga_row = createRow(mpumalanga_id,mpumalanga_title,mpumalanga_description)
 
 let province_section=createSection("provinces",[gauteng_row,kzn_row,western_cape_row,limpopo_row, free_state_row,northern_cape_row,mpumalanga_row,north_west_row,eastern_cape_row]);
-// let province_section=createSection("provinces",[ northern_cape_row,mpumalanga_row,north_west_row,eastern_cape_row]);
 let ask_province = createInteractiveList("ask_province",[province_section]);
-// ask_province.value.header.text="Province"
-// ask_province.value.body.text=`What province is your property in ?`;
-// ask_province.value.footer.text="Choose a province ";
-// ask_province.value.action.button="Options";
 
-ask_province.value.header.text="Select a province"
-ask_province.value.body.text=emoji.replace_colons(`What province is your property in ?`);
+
+ask_province.value.header.text="Province"
+ask_province.value.body.text=emoji.replace_colons(`In what province is your property located ?`);
 ask_province.value.footer.text="Choose a province ";
 ask_province.value.action.button="Provinces";
 
@@ -102,62 +98,62 @@ const ask_address = createTextUI('ask_address',address_message);
 ///////////////////////////////////////////////////////////
 ////how many BackRooms 
 
-let one_id="one_id"
-let one_title="1"
+let one_id="one_room_id"
+let one_title="One"
 let one_description=""
-let one_row = createRow(one_id,one_title,one_description)
+let one_row = createRow(one_room_id,one_title,one_description)
 
-let two_id="two_id"
-let two_title="2"
+let two_room_id="two_room_id"
+let two_title="Two"
 let two_description=""
-let two_row = createRow(two_id,two_title,two_description)
+let two_row = createRow(two_room_id,two_title,two_description)
 
-let three_id="three_id"
-let three_title="3"
+let three_room_id="three_room_id"
+let three_title="Three"
 let three_description=""
-let three_row = createRow(three_id,three_title,three_description)
+let three_row = createRow(three_room_id,three_title,three_description)
 
-let four_id="four_id"
-let four_title="4"
+let four_room_id="four_room_id"
+let four_title="Four"
 let four_description=""
-let four_row = createRow(four_id,four_title,four_description)
+let four_row = createRow(four_room_id,four_title,four_description)
 
-let five_id="five_id"
-let five_title="5"
+let five_room_id="five_room_id"
+let five_title="Fve"
 let five_description=""
-let five_row = createRow(five_id,five_title,five_description)
+let five_row = createRow(five_room_id,five_title,five_description)
 
-let six_id="six_id"
-let six_title="6"
+let six_room_id="six_room_id"
+let six_title="Six"
 let six_description=""
-let six_row = createRow(six_id,six_title,six_description)
+let six_row = createRow(six_room_id,six_title,six_description)
 
-let seven_id="seven_id"
+let seven_room_id="seven_room_id"
 let seven_title="7"
 let seven_description=""
-let seven_row = createRow(seven_id,seven_title,seven_description)
+let seven_row = createRow(seven_room_id,seven_title,seven_description)
 
-let eight_id="eight_id"
+let eight_room_id="eight_room_id"
 let eight_title="8"
 let eight_description=""
-let eight_row = createRow(eight_id,eight_title,eight_description)
+let eight_row = createRow(eight_room_id,eight_title,eight_description)
 
-let nine_id="nine_id"
+let nine_room_id="nine_room_id"
 let nine_title="9"
 let nine_description=""
-let nine_row = createRow(nine_id,nine_title,nine_description)
+let nine_row = createRow(nine_room_id,nine_title,nine_description)
 
-let ten_id="ten_id"
-let ten_title="10"
-let ten_description=""
-let ten_row = createRow(ten_id,ten_title,ten_description)
+// let ten_room_id="ten_room_id"
+// let ten_title="10"
+// let ten_description=""
+// let ten_row = createRow(ten_room_id,ten_title,ten_description)
 
-let nums_section=createSection("available rooms",[one_row,two_row,three_row,four_row,five_row,six_row,seven_row,eight_row,nine_row,ten_row]);
+let nums_section=createSection("available rooms",[one_row,two_row,three_row,four_row,five_row,six_row]);
 let ask_rooms_available = createInteractiveList("ask_rooms_available",[nums_section]);
 ask_rooms_available.value.header.text="Number of available rooms"
 ask_rooms_available.value.body.text=`How many rooms are currently available ?`;
 ask_rooms_available.value.footer.text="";
-ask_rooms_available.value.action.button="No. of rooms";
+ask_rooms_available.value.action.button="Number of rooms";
 /////////////////////////////////////////////////
 //////************NO. of BEDROOMS*************** */
 let ask_bedrooms_available = createInteractiveList("ask_bedrooms_available",[nums_section]);
