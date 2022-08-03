@@ -156,9 +156,9 @@ ask_rooms_available.value.footer.text="";
 ask_rooms_available.value.action.button="Number of rooms";
 /////////////////////////////////////////////////
 //////************NO. of BEDROOMS*************** */
-let ask_bedrooms_available = createInteractiveList("ask_bedrooms_available",[province_section]);
-ask_bedrooms_available.value.header.text="Number of available bedrooms"
-ask_bedrooms_available.value.body.text=`How many bedrooms does the property have ?`;
+let ask_bedrooms_available = createInteractiveList("ask_bedrooms_available",[nums_section]);
+ask_bedrooms_available.value.header.text="Number of available cardboards"
+ask_bedrooms_available.value.body.text=`How many cudboards does the property have ?`;
 ask_bedrooms_available.value.footer.text="";
 ask_bedrooms_available.value.action.button="Options";
 
