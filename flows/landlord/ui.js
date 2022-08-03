@@ -77,7 +77,7 @@ let mpumalanga_row = createRow(mpumalanga_id,mpumalanga_title,mpumalanga_descrip
 let province_section=createSection("provinces",[gauteng_row,kzn_row,western_cape_row,limpopo_row, free_state_row,north_west_row,northern_cape_row,mpumalanga_row,north_west_row,eastern_cape_row]);
 let ask_province = createInteractiveList("ask_province",[province_section]);
 ask_province.value.header.text="Select a province"
-ask_province.value.body.text=emoji.replace_colons(`What province is your property in ?`);
+ask_province.value.body.text=`What province is your property in ?`;
 ask_province.value.footer.text="Choose a province ";
 ask_province.value.action.button="Provinces";
 
@@ -149,16 +149,16 @@ let ten_row = createRow(ten_id,ten_title,ten_description)
 let nums_section=createSection("available rooms",[one_row,two_row,three_row,four_row,five_row,six_row,seven_row,eight_row,nine_row,ten_row]);
 let ask_rooms_available = createInteractiveList("ask_rooms_available",[nums_section]);
 ask_rooms_available.value.header.text="Number of available rooms"
-ask_rooms_available.value.body.text=emoji.replace_colons(`How many rooms are currently available ?`);
+ask_rooms_available.value.body.text=`How many rooms are currently available ?`;
 ask_rooms_available.value.footer.text="";
 ask_rooms_available.value.action.button="No. of rooms";
 /////////////////////////////////////////////////
 //////************NO. of BEDROOMS*************** */
 let ask_bedrooms_available = createInteractiveList("ask_bedrooms_available",[nums_section]);
 ask_bedrooms_available.value.header.text="Number of available bedrooms"
-ask_bedrooms_available.value.body.text=emoji.replace_colons(`How many bedrooms are currently available ?`);
+ask_bedrooms_available.value.body.text=`How many bedrooms are currently available ?`;
 ask_bedrooms_available.value.footer.text="";
-ask_bedrooms_available.value.action.button="No. of bedrooms";
+ask_bedrooms_available.value.action.button="Options";
 
 //////////////////////////////////////////////////
 //*********PARKING******** */
