@@ -383,3 +383,9 @@ const landlordNodes=[
     
     },
 ]
+
+
+
+module.exports={
+  landlordNodes
+}

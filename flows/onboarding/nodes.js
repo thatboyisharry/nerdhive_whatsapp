@@ -39,16 +39,16 @@ const onboardingNodes=[
         }],
         transitions:[
             {
-                name:'askProvince',
-                node:'askProvince',
+                name:'ask_province',
+                node:'ask_province',
                 function:'isLandlord',
                 flow:'landlord', 
                 catchNode:'none',
                 trigger:'landlord'
             },
             {
-                name:'askProvince',
-                node:'askProvince',
+                name:'ask_province',
+                node:'ask_province',
                 function:'isRenter',
                 flow:'tenant',
                 catchNode:'none',

@@ -62,15 +62,18 @@ const getUserResponse = (msg)=>{
       // if we are just starting a new flow
     
       //if node has only one none response dependent transition
+   
+   
+    
+   
     if(node.transitions.length==1){
       return node.transitions[0]
     }
-   
-    if(node.name==='start'){
+  
+   if(node.name==='start'){
       console.log("node is start")
       return node
     }
-  
     return null
 }
 

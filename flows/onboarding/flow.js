@@ -1,4 +1,4 @@
-const { askName, parent_or_learner, start, what_grade_learner, what_grade_parent } = require("./ui")
+const { askName, landlord_or_renter, start } = require("./ui")
 const { onboardingNodes } = require ("./nodes")
 
 
@@ -8,9 +8,7 @@ const { onboardingNodes } = require ("./nodes")
     user_interfaces:[
         start,
         askName,
-        parent_or_learner,
-        what_grade_learner,
-        what_grade_parent
+        landlord_or_renter
     ],
     nodes:onboardingNodes
 
