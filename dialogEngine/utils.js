@@ -173,10 +173,10 @@ const getResponses=async(flow,next_node)=>{
             bot_response.image=user_interface.imageID
             responses.push(bot_response)
           
-            responses.push(bot_response)
+           
     
         }
-
+ 
     }
 
 
