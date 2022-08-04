@@ -146,7 +146,7 @@ const getResponses=async(flow,next_node)=>{
         let bot_response
        
 
-        if(user_interface.type==){
+        if(user_interface.type===''){
             bot_response={
             messaging_product: "whatsapp",
             recipient_type:"individual",
