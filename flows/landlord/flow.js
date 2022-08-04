@@ -2,6 +2,10 @@ const {ask_property_type,ask_province,ask_city,ask_town,ask_address,ask_bedrooms
 const { landlordNodes } = require ("./nodes")
 
 
+let image={
+  name:'send_image',
+}
+
 
  const landlordFlow={
     name:'landlord',
@@ -19,7 +23,7 @@ const { landlordNodes } = require ("./nodes")
         ask_rent_info,
         ask_deposit_required,
         ask_deposit_amount,
-        ask_additional_info 
+        ask_additional_info,
        
     ],
     nodes:landlordNodes

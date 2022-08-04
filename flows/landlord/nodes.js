@@ -369,6 +369,32 @@ const landlordNodes=[
         ],
         transitions:[
             {
+                name:'send_image',
+                actions:'savePropertyType',
+                flow:'landlord', 
+                node:'send_image',
+                catchNode:'none',
+                trigger:""
+            }
+            
+        ],
+        catch:""
+
+    
+    },
+   {
+        name:'send_image',
+        flow:'landlord',
+        node:'send_image',
+        actions:'saveAdditionalInfo',
+        uis:[
+            {
+                type:'interactive',
+                name:'send_image'
+            },
+        ],
+        transitions:[
+             {
                 name:'ask_additional_info',
                 actions:'savePropertyType',
                 flow:'landlord', 
@@ -382,6 +408,9 @@ const landlordNodes=[
 
     
     },
+  
+  
+  
 ]
 
 
