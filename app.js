@@ -121,7 +121,7 @@ app.post("/webhook",async(req,res)=>{
                       data: data
                       })
                       .then(function (response) {
-                        console.log(JSON.stringify(response.data));
+                        // console.log(JSON.stringify(response.data));
                       }).catch(function (error) {
                           console.log(" error posting response");
                           console.log(error)

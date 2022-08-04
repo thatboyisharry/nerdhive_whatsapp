@@ -106,7 +106,7 @@ const getFlow=async(flow_name)=>{
         let flow = Flows[i]
         if(flow.name===name){
           console.log("current flow")
-          console.log(flow)
+          // console.log(flow)
             return flow
         }
     }
@@ -146,7 +146,7 @@ const getResponses=async(flow,next_node)=>{
         let bot_response
        
 
-        if(user_interface.type===''){
+        if(user_interface.type==='interactive'){
             bot_response={
             messaging_product: "whatsapp",
             recipient_type:"individual",
@@ -164,7 +164,14 @@ const getResponses=async(flow,next_node)=>{
     
     
         if(user_interface.type==='image'){
-          
+          bot_response={
+            messaging_product: "whatsapp",
+            recipient_type:"individual",
+            to:'', 
+            type:'image'
+            }
+            bot_response.image=user_interface.imageID
+            responses.push(bot_response)
           
             responses.push(bot_response)
     

@@ -4,6 +4,8 @@ const { landlordNodes } = require ("./nodes")
 
 let image={
   name:'send_image',
+  type:'image',
+  imageID:'450595936964433'
 }
 
 
@@ -24,6 +26,7 @@ let image={
         ask_deposit_required,
         ask_deposit_amount,
         ask_additional_info,
+        image
        
     ],
     nodes:landlordNodes
