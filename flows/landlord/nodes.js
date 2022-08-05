@@ -3,7 +3,7 @@ const landlordNodes=[
         name:'ask_province',
         flow:'landlord',
         node:'ask_province',
-        actions:'saveProvince',
+        actions:[{name:'saveProvince',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
@@ -13,7 +13,6 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_city',
-                actions:'none',
                 flow:'landlord', 
                 node:'ask_city',
                 catchNode:'none',
@@ -28,7 +27,7 @@ const landlordNodes=[
         name:'ask_city',
         flow:'landlord',
         node:'ask_city',
-        actions:'saveCity',
+        actions:[{name:'saveCity',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
@@ -38,7 +37,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_town',
-                actions:'none',
+        
                 flow:'landlord', 
                 node:'ask_town',
                 catchNode:'none',
@@ -53,7 +52,7 @@ const landlordNodes=[
         name:'ask_town',
         flow:'landlord',
         node:'ask_town',
-        actions:'saveTown',
+        actions:[{name:'saveTown',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
@@ -63,7 +62,6 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_address',
-                actions:'none',
                 flow:'landlord', 
                 node:'ask_address',
                 catchNode:'none',
@@ -78,7 +76,7 @@ const landlordNodes=[
         name:'ask_address',
         flow:'landlord',
         node:'ask_address',
-        actions:'saveAddress',
+        actions:[{name:'saveAddress',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
@@ -88,7 +86,6 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_property_type',
-                actions:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_property_type',
                 catchNode:'none',
@@ -103,7 +100,7 @@ const landlordNodes=[
         name:'ask_property_type',
         flow:'landlord',
         node:'ask_property_type',
-        actions:'savePropertyType',
+        actions:[{name:'savePropertyType',trigger:'',flow:'lanlord'}],
         uis:[
             {
                 type:'interactive',
@@ -113,7 +110,6 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_rooms_available',
-                actions:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_rooms_available',
                 catchNode:'none',
@@ -121,7 +117,6 @@ const landlordNodes=[
             },
             {
                 name:'ask_bedrooms_available',
-                actions:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_bedrooms_available',
                 catchNode:'none',
@@ -136,7 +131,7 @@ const landlordNodes=[
         name:'ask_rooms_available',
         flow:'landlord',
         node:'ask_rooms_available',
-        actions:'saveAvailableRoomsNum',
+        actions:[{name:'saveAvailableRoomsNum',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
@@ -146,7 +141,6 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_own_bathroom_availability',
-                actions:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_own_bathroom_availability',
                 catchNode:'none',
@@ -162,7 +156,7 @@ const landlordNodes=[
         name:'ask_bedrooms_available',
         flow:'landlord',
         node:'ask_bedrooms_available',
-        actions:'saveBedroomsNum',
+        actions:[{name:'saveBedroomsNum',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
@@ -173,7 +167,6 @@ const landlordNodes=[
            
             {
                 name:'ask_own_bathroom_availability',
-                actions:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_own_bathroom_availability',
                 catchNode:'none',
@@ -189,7 +182,7 @@ const landlordNodes=[
         name:'ask_own_bathroom_availability',
         flow:'landlord',
         node:'ask_own_bathroom_availability',
-        actions:'hasOwnBathroom',
+        actions:[{name:'hasOwnBathroom',trigger:'',floe}],
         uis:[
             {
                 type:'interactive',
@@ -199,7 +192,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_shower_availability',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_shower_availability',
                 catchNode:'none',
@@ -207,7 +200,7 @@ const landlordNodes=[
             },
             {
                 name:'ask_parking_availability',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_parking_availability',
                 catchNode:'none',
@@ -222,7 +215,7 @@ const landlordNodes=[
         name:'ask_shower_availability',
         flow:'landlord',
         node:'ask_shower_availability',
-        actions:'hasShower',
+        actions:name:'hasShower',
         uis:[
             {
                 type:'interactive',
@@ -232,7 +225,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_parking_availability',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_parking_availability',
                 catchNode:'none',
@@ -248,7 +241,7 @@ const landlordNodes=[
         name:'ask_parking_availability',
         flow:'landlord',
         node:'ask_parking_availability',
-        actions:'hasParking',
+        actions:name:'hasParking',
         uis:[
             {
                 type:'interactive',
@@ -258,7 +251,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_rent_info',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_rent_info',
                 catchNode:'none',
@@ -274,7 +267,7 @@ const landlordNodes=[
         name:'ask_rent_info',
         flow:'landlord',
         node:'ask_rent_info',
-        actions:'saveRentAmount',
+        actions:name:'saveRentAmount',
         uis:[
             {
                 type:'interactive',
@@ -284,7 +277,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_deposit_required',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_deposit_required',
                 catchNode:'none',
@@ -300,7 +293,7 @@ const landlordNodes=[
         name:'ask_deposit_required',
         flow:'landlord',
         node:'ask_deposit_required',
-        actions:'depositRequired',
+        actions:name:'depositRequired',
         uis:[
             {
                 type:'interactive',
@@ -310,7 +303,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_deposit_amount',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_deposit_amount',
                 catchNode:'none',
@@ -318,7 +311,7 @@ const landlordNodes=[
             },
             {
                 name:'ask_additional_info',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_additional_info',
                 catchNode:'none',
@@ -334,7 +327,7 @@ const landlordNodes=[
         name:'ask_deposit_amount',
         flow:'landlord',
         node:'ask_deposit_amount',
-        actions:'saveDepositAmount',
+        actions:name:'saveDepositAmount',
         uis:[
             {
                 type:'interactive',
@@ -344,7 +337,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_additional_info',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_additional_info',
                 catchNode:'none',
@@ -360,7 +353,7 @@ const landlordNodes=[
         name:'ask_additional_info',
         flow:'landlord',
         node:'ask_additional_info',
-        actions:'saveAdditionalInfo',
+        actions:name:'saveAdditionalInfo',
         uis:[
             {
                 type:'interactive',
@@ -370,7 +363,7 @@ const landlordNodes=[
         transitions:[
             {
                 name:'ask_property_pictures',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'ask_property_pictures',
                 catchNode:'none',
@@ -386,7 +379,7 @@ const landlordNodes=[
         name:'ask_property_pictures',
         flow:'landlord',
         node:'ask_property_pictures',
-        actions:'savePropertyPictures',
+        actions:name:'savePropertyPictures',
         uis:[
             {
                 type:'text',
@@ -396,7 +389,7 @@ const landlordNodes=[
         transitions:[
              {
                 name:'get_pictures',
-                actions:'savePropertyType',
+                actions:name:'savePropertyType',
                 flow:'landlord', 
                 node:'get_pictures',
                 catchNode:'none',
@@ -412,7 +405,7 @@ const landlordNodes=[
           name:'get_pictures',
           flow:'landlord',
           node:'get_pictures',
-          actions:'none',
+          actions:name:'none',
           uis:[
               {
                   type:'image',
@@ -422,7 +415,7 @@ const landlordNodes=[
           transitions:[
                {
                   name:'ask_additional_info',
-                  actions:'savePropertyType',
+                  actions:name:'savePropertyType',
                   flow:'landlord', 
                   node:'ask_additional_info',
                   catchNode:'none',
