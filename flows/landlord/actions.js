@@ -55,9 +55,9 @@ const landlordFlowActions=async(action,user_response,user)=>{
     action_status = await saveDepositAmount(user,user_response)
   }  
 
-  if(action==="saveAdditionalnfo"){
+  if(action==="saveAdditionalInfo"){
     console.log("saving additional info...")
-    action_status = await saveAdditionalnfo(user,user_response)
+    action_status = await saveAdditionalInfo(user,user_response)
   }
 
   
@@ -251,10 +251,10 @@ const saveRentAmount=async(user,rentAmount)=>{
 }
 
 /////////////////////////////////////
-const saveAdditionalnfo=async(user,additionalnfo)=>{
+const saveAdditionalInfo=async(user,additionalInfo)=>{
     console.log("saving additional info")
     let data={
-      additionalnfo:additionalnfo
+      additionalInfo:additionalInfo
     }
     
     let status = await updateProperty(user,data);
