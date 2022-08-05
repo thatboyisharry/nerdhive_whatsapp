@@ -267,11 +267,10 @@ const saveAdditionalnfo=async(user,additionalnfo)=>{
 
 const savePropertyPictures=async(user,image_id)=>{
   
-    let data={
-      additionalnfo:additionalnfo
-    }
+    let data=image_id
+    let type='image'
     
-    let status = await updateProperty(user,data);
+    let status = await updateProperty(user,data,type);
     
     return status
     
@@ -288,7 +287,7 @@ const updateProperty=async(user,data,type)=>{
    
   try{
      let property=await getProperty(user._id) 
-     if(type==="image"){
+     if(type&&type==="image"){
        data=property.pictures.push(data);
       }
      let updatedUser= await Property.findByIdAndUpdate(property._id,data)
