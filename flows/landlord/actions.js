@@ -288,6 +288,7 @@ const updateProperty=async(user,data,type)=>{
   try{
      let property=await getProperty(user._id) 
      if(type&&type==="image"){
+       console.log('saving image')
        data=property.images.push(data);
       }
      let updatedUser= await Property.findByIdAndUpdate(property._id,data)

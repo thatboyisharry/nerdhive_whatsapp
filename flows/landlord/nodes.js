@@ -412,7 +412,7 @@ const landlordNodes=[
           name:'get_pictures',
           flow:'landlord',
           node:'get_pictures',
-          actions:'savePropertyPictures',
+          actions:'none',
           uis:[
               {
                   type:'image',
