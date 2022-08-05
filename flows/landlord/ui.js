@@ -207,7 +207,7 @@ ask_deposit_required.value.body.text="Is a deposit fee required ?"
 let deposit_amount_message = "How much is the deposit fee ?\n*R*"
 const ask_deposit_amount = createTextUI('ask_deposit_amount',deposit_amount_message);
 
-let property_pictures_message = "Great!, we are almost done.\n Send us the pictures of your property_pictures and send *done* after you're done."
+let property_pictures_message = "Great!, we are almost done.\n Send us the pictures of your property and send *done* when you're done."
 const ask_property_pictures = createTextUI('ask_property_pictures',property_pictures_message);
 
 

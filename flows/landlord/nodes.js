@@ -395,10 +395,10 @@ const landlordNodes=[
         ],
         transitions:[
              {
-                name:'ask_additional_info',
+                name:'get_pictures',
                 actions:'savePropertyType',
                 flow:'landlord', 
-                node:'ask_additional_info',
+                node:'get_pictures',
                 catchNode:'none',
                 trigger:""
             }
@@ -408,6 +408,32 @@ const landlordNodes=[
 
     
     },
+    {
+          name:'get_pictures',
+          flow:'landlord',
+          node:'get_pictures',
+          actions:'savePropertyPictures',
+          uis:[
+              {
+                  type:'image',
+                  name:'get_pictures'
+              },
+          ],
+          transitions:[
+               {
+                  name:'ask_additional_info',
+                  actions:'savePropertyType',
+                  flow:'landlord', 
+                  node:'ask_additional_info',
+                  catchNode:'none',
+                  trigger:""
+              }
+
+          ],
+          catch:""
+
+
+      },
   
   
   

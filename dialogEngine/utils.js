@@ -145,9 +145,22 @@ const getResponses=async(flow,next_node)=>{
     for(let i = 0; i<UIs.length; i++){
         let user_interface=UIs[i];
         let bot_response
-       
+        
+        if(user_interface.type==='image'){
+          bot_response={
+            messaging_product: "whatsapp",
+            recipient_type:"individual",
+            to:'', 
+            type:'image'
+            }
+            bot_response.image=user_interface.imageID
+            responses.push(bot_response)
+          
+           
+    
+        }
 
-        if(user_interface.type==='interactive'){
+        if(user_interface.type!=='text'){
             bot_response={
             messaging_product: "whatsapp",
             recipient_type:"individual",
@@ -164,19 +177,7 @@ const getResponses=async(flow,next_node)=>{
         }
     
     
-        if(user_interface.type==='image'){
-          bot_response={
-            messaging_product: "whatsapp",
-            recipient_type:"individual",
-            to:'', 
-            type:'image'
-            }
-            bot_response.image=user_interface.imageID
-            responses.push(bot_response)
-          
-           
-    
-        }
+       
  
     }
 
