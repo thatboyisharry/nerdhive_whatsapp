@@ -207,6 +207,9 @@ ask_deposit_required.value.body.text="Is a deposit fee required ?"
 let deposit_amount_message = "How much is the deposit fee ?\n*R*"
 const ask_deposit_amount = createTextUI('ask_deposit_amount',deposit_amount_message);
 
+let property_pictures_message = "Great!, we are almost done.\n Send us the pictures of your property_pictures and send *done* after you're done."
+const ask_property_pictures = createTextUI('ask_property_pictures',property_pictures_message);
+
 
 module.exports = {
     ask_property_type,
@@ -222,5 +225,6 @@ module.exports = {
     ask_deposit_required,
     ask_shower_availability,
     ask_deposit_amount,
-    ask_additional_info
+    ask_additional_info,
+    ask_property_pictures
 }

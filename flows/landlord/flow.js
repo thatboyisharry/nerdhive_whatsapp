@@ -1,4 +1,4 @@
-const {ask_property_type,ask_province,ask_city,ask_town,ask_address,ask_bedrooms_available,ask_rooms_available,ask_parking_availability,ask_own_bathroom_availability,ask_shower_availability,ask_rent_info,ask_deposit_required,ask_deposit_amount,ask_additional_info } = require("./ui")
+const { ask_property_pictures,ask_property_type,ask_province,ask_city,ask_town,ask_address,ask_bedrooms_available,ask_rooms_available,ask_parking_availability,ask_own_bathroom_availability,ask_shower_availability,ask_rent_info,ask_deposit_required,ask_deposit_amount,ask_additional_info } = require("./ui")
 const { landlordNodes } = require ("./nodes")
 
 
@@ -30,7 +30,7 @@ let image={
         ask_deposit_required,
         ask_deposit_amount,
         ask_additional_info,
-        image
+        ask_property_pictures
        
     ],
     nodes:landlordNodes
