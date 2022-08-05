@@ -251,7 +251,7 @@ const saveRentAmount=async(user,rentAmount)=>{
 
 /////////////////////////////////////
 const saveAdditionalnfo=async(user,additionalnfo)=>{
-  
+    console.log("saving additional info")
     let data={
       additionalnfo:additionalnfo
     }

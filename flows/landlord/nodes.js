@@ -389,7 +389,7 @@ const landlordNodes=[
         actions:'savePropertyPictures',
         uis:[
             {
-                type:'image',
+                type:'text',
                 name:'ask_property_pictures'
             },
         ],
