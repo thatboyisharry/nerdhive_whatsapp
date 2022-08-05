@@ -60,6 +60,10 @@ const landlordFlowActions=async(action,user_response,user)=>{
   }
 
   
+  if(action==="savePropertyPictures"){
+    action_status = await savePropertyPictures(user,user_response)
+  }
+  
   return action_status
 }
 
@@ -261,18 +265,32 @@ const saveAdditionalnfo=async(user,additionalnfo)=>{
 
 /////////////////////////////////////
 
-
+const savePropertyPictures=async(user,image_id)=>{
+  
+    let data={
+      additionalnfo:additionalnfo
+    }
+    
+    let status = await updateProperty(user,data);
+    
+    return status
+    
+      
+}
 
 ///////////////////////////////////////
 
 
 
 /////////////////////
-const updateProperty=async(user,data)=>{
+const updateProperty=async(user,data,type)=>{
 
    
   try{
      let property=await getProperty(user._id) 
+     if(type==="image"){
+       data=property.pictures.push(data);
+      }
      let updatedUser= await Property.findByIdAndUpdate(property._id,data)
       console.log("updated user")
       console.log(data)

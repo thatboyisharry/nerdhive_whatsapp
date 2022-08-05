@@ -31,6 +31,7 @@ const getUserResponse = (msg)=>{
     }
 
     if(type==='image'){
+        response=msg.image.id;
         //write logic to extract the image from the msg
     }
 
