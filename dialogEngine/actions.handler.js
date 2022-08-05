@@ -2,7 +2,7 @@ const { onboardingActions } = require('../flows/onboarding/actions');
 const { landlordFlowActions } = require('../flows/landlord/actions');
 const actionsHandler= async(node,user_response,user)=>{
   
-  if(node.actions>0){
+  if(node.actions&&node.actions.length>0){
     let action=node.actions[0]
   
     if(node.actions.length>1){
@@ -14,7 +14,7 @@ const actionsHandler= async(node,user_response,user)=>{
       }
     }
     
-    let executed;
+    let executed=true;
     if(action.flow==='onboarding'){
       console.log("onboading flow...")
       executed = await onboardingActions(action.name,user_response,user);
@@ -25,7 +25,7 @@ const actionsHandler= async(node,user_response,user)=>{
       executed = await landlordFlowActions(action.name,user_response,user);
     }
 
-    return true   
+    return executed
     
     
   }
@@ -33,9 +33,9 @@ const actionsHandler= async(node,user_response,user)=>{
   return true
   
   
-  
-  
 }
+
+
 
 module.exports={
   actionsHandler
