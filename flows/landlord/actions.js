@@ -32,15 +32,15 @@ const landlordFlowActions=async(action,user_response,user)=>{
   }
 
   if(action==="hasOwnBathroom"){
-    action_status = await hasOwnBathroom(user)
+    action_status = await hasOwnBathroom(user,user_response)
   }
 
   if(action==="hasShower"){
-    action_status = await hasShower(user)
+    action_status = await hasShower(user,user_response)
   }
 
   if(action==="hasParking"){
-    action_status = await hasParking(user)
+    action_status = await hasParking(user,user_response)
   }
 
   if(action==="saveRentAmount"){
@@ -168,10 +168,18 @@ const saveBedroomsNum=async(user,numOfBedrooms)=>{
       
 }
 /////////////////////////////////////
-const hasOwnBathroom=async(user)=>{
+const hasOwnBathroom=async(user,user_response)=>{
+  
+    let response;
+  
+    if(user_response==='yes'){
+     response=true;
+    }else{
+      response=false;
+    }
   
     let data={
-      hasOwnBathroom:true
+      hasOwnBathroom:response
     }
     
     let status = await updateProperty(user,data);
@@ -182,10 +190,18 @@ const hasOwnBathroom=async(user)=>{
 }
 
 /////////////////////////////////////
-const hasShower=async(user)=>{
+const hasShower=async(user,user_response)=>{
+  
+    let response;
+  
+    if(user_response==='yes'){
+     response=true;
+    }else{
+      response=false;
+    }
   
     let data={
-      hasShower:true
+      hasShower:response
     }
     
     let status = await updateProperty(user,data);
@@ -195,10 +211,18 @@ const hasShower=async(user)=>{
       
 }
 /////////////////////////////////////
-const hasParking=async(user)=>{
+const hasParking=async(user,user_response)=>{
+  
+    let response;
+  
+    if(user_response==='yes'){
+     response=true;
+    }else{
+      response=false;
+    }
   
     let data={
-      hasParking:true
+      hasParking:response
     }
     
     let status = await updateProperty(user,data);
@@ -209,10 +233,19 @@ const hasParking=async(user)=>{
 }
 
 /////////////////////////////////////
-const depositRequired=async(user)=>{
+const depositRequired=async(user,user_response)=>{
+  
+    let response;
+  
+    if(user_response==='yes'){
+     response=true;
+    }else{
+      response=false;
+    }
+  
   
     let data={
-      depositRequired:true
+      depositRequired:response
     }
     
     let status = await updateProperty(user,data);
