@@ -42,6 +42,7 @@ const getUserResponse = (msg)=>{
  ////////////
  const getTransition=(node,user_response)=>{
   console.log("getting transition...")
+  console.log(user_response)
   let response
     if(user_response){
         let response =user_response
@@ -82,7 +83,7 @@ const getNode=(flow,node_name)=>{
 
     let nodes=flow.nodes
     console.log("getting flow nodes")
-    console.log(nodes)
+    // console.log(nodes)
     console.log("node name")
     console.log(node_name)
     for(let i = 0; i < nodes.length;i++){
