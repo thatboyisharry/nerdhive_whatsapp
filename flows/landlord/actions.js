@@ -56,6 +56,7 @@ const landlordFlowActions=async(action,user_response,user)=>{
   }  
 
   if(action==="saveAdditionalnfo"){
+    console.log("saving additional info...")
     action_status = await saveAdditionalnfo(user,user_response)
   }
 
