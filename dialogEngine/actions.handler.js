@@ -8,7 +8,8 @@ const actionsHandler= async(transition,user_response,user)=>{
     executed = await onboardingActions(transition.actions,user_response,user);
   }
   if(transition.flow==='landlord'){
-    console.log("onboading flow...")
+    console.log("landlord flow...")
+    console.log(transition.actions)
     executed = await landlordFlowActions(transition.actions,user_response,user);
   }
   

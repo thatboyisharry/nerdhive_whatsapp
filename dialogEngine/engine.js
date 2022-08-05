@@ -64,7 +64,7 @@ const getBotResponses=async(user,msg)=>{
     let isUpdated;
     if(transition!==null){
          
-       
+       console.log("transition is not null")
         //excute transition node actions
         if(transition.flow===current_node.flow){
           let executed = await actionsHandler(current_node,user_response,user)
