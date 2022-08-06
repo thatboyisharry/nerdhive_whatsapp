@@ -12,18 +12,18 @@ const { getUserResponse, getMessages, getTransition, getFlow, getNode } = requir
 ////////////////////////////////////////////////
 
 
-const getBotResponses=async(user,msg)=>{
+const getBotResponses=async(user,user_response)=>{
   let responses;
   
   if(!(user.isOnboarded|user.isOnboarding)){
       console.log("current user")
       console.log(user)
 
-        responses= await onboardUser(user,msg);
+        responses= await onboardUser(user);
         let updatedUser = await getUser(user.phone);
         if(updatedUser.isOnboarding){
           let user=updatedUser;
-          return getBotResponses(updatedUser,msg)
+          return getBotResponses(updatedUser,user_response)
         }
 
   }
@@ -35,8 +35,7 @@ const getBotResponses=async(user,msg)=>{
   if(user.isOnboarded|user.isOnboarding){
     console.log("user inside if onboarding")
     console.log(user)
-      
-    let user_response = await getUserResponse(msg);
+    
     let session=user.session;
     console.log("session");
     console.log(session)

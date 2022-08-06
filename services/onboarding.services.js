@@ -3,7 +3,7 @@ require("../messages/templates");
 
 
 
-const onboardUser=async(user,msg)=>{
+const onboardUser=async(user)=>{
   console.log("inside onboarding...")
   //
   if(!user.isOnboarding){
