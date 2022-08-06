@@ -3,7 +3,7 @@ const onboardingNodes=[
         name:'start',
         node:'start',
         flow:'onboarding',
-        actions:"none",
+        actions:[],
         uis:[
             {
                 type:'text',
@@ -32,7 +32,7 @@ const onboardingNodes=[
         name:'landlord_or_renter',
         flow:'onboarding',
         node:'landlord_or_renter',
-        actions:"",
+        actions:[{name:'saveProvince',trigger:'',flow:'landlord'}],
         uis:[{
             type:'interactive',
             name:"landlord_or_renter"
@@ -52,7 +52,7 @@ const onboardingNodes=[
                 function:'isRenter',
                 flow:'tenant',
                 catchNode:'none',
-                trugger:'renter'
+                trigger:'renter'
             }
         ],
         catch:""
