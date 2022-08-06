@@ -24,7 +24,7 @@ const request = require("request"),
   const { getUserResponse } = require('./dialogEngine/utils');
   const { getBotResponses } = require('./dialogEngine/engine');
   const { getUser } = require('./dialogEngine/apiCalls');
-  const { createUser, isOnboarding, startOnboarding } = require('./services/onboarding.services');
+const { updateStatus, sendResponse } = require("./dialogEngine/sendResponse");
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
@@ -38,126 +38,43 @@ db.once('open',()=>{
              
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook",async(req,res)=>{
-          const body = req.body
-          if(body.object){
-            if (
-              req.body.entry &&
-              req.body.entry[0].changes &&
-              req.body.entry[0].changes[0] &&
-              req.body.entry[0].changes[0].value.messages &&
-              req.body.entry[0].changes[0].value.messages[0]
-            ){
-          
-  
+    const body = req.body
+    if(body.object){
+      if (
+        req.body.entry &&
+        req.body.entry[0].changes &&
+        req.body.entry[0].changes[0] &&
+        req.body.entry[0].changes[0].value.messages &&
+        req.body.entry[0].changes[0].value.messages[0]
+      ){
 
-          let post = body.entry[0].changes[0]
-          let incoming=post.value;
-          if(post.field !== 'messages'){
-          // not from the messages webhook so dont process
-            console.log("not from client do not process")
-            return res.sendStatus(400)
-          }
-          console.log(JSON.stringify(req.body, null, 2));          
-          let phone_number_id = incoming.metadata.phone_number_id;
-          let msg =incoming.messages[0];
-          let user_num=msg.from;
-          
-
-  
-    
-          let updatedStatus={
-              messaging_product: "whatsapp",
-              status: "read",
-              message_id: msg.id
-          }
-          axios({
-                  method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-                  url:
-                    "https://graph.facebook.com/v13.0/" +
-                    phone_number_id +
-                    "/messages?access_token=" +
-                    token,
-                  headers: { "Content-Type": "application/json" },
-                  data: updatedStatus
-                  })
-                  .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                  })
-                  .catch(function (error) {
-                      console.log("error updating status");
-                  });
-              
-              
-
-          console.log("incoming message")
-          console.log(msg)
-         
-           
-            let user = await getUser(user_num);
-            let bot_responses;
+            let post = body.entry[0].changes[0]
+            let incoming=post.value;
+            if(post.field !== 'messages'){
+            // not from the messages webhook so dont process
+              console.log("not from client do not process")
+              return res.sendStatus(400)
+            }
+            console.log(JSON.stringify(req.body, null, 2));          
+            let phone_number_id = incoming.metadata.phone_number_id;
+            let msg =incoming.messages[0];
+            let user_num=msg.from;
+            console.log("incoming message")
+            console.log(msg)
+            
+            
             try{
-                bot_responses = await getBotResponses(user,msg)
-                console.log("bot responses");
-                console.log(bot_responses)
+              await updateStatus(phone_number_id,token,msg,"read")
+              let user = await getUser(user_num);
+              let user_response=await getUserResponse(msg);
+              let bot_responses=await getBotResponses(user,user_response)
+              sendResponse(phone_number_id,token,user_num,bot_responses)
             }catch(error){
-                console.log(error)
-            }
-              
-            
-            if(Array.isArray(bot_responses)){
-              for(let i = 0; i < bot_responses.length ; i++){
-                let bot_response = bot_responses[i];
-                bot_response.to=user_num
-                let data =bot_response
-                console.log(data)
-                  axios({
-                      method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-                      url:
-                        "https://graph.facebook.com/v13.0/" +
-                        phone_number_id +
-                        "/messages?access_token=" +
-                        token,
-                      headers: { "Content-Type": "application/json" },
-                      data: data
-                      })
-                      .then(function (response) {
-                        // console.log(JSON.stringify(response.data));
-                      }).catch(function (error) {
-                          console.log(" error posting response");
-                          console.log(error)
-                  });
-              }
-            }
-            
-            if(!Array.isArray(bot_responses)){
-              if(bot_responses){
-                bot_responses.to=user_num
-              }
-              console.log(bot_responses)
-              let data =bot_responses
-                  axios({
-                      method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-                      url:
-                        "https://graph.facebook.com/v13.0/" +
-                        phone_number_id +
-                        "/messages?access_token=" +
-                        token,
-                      headers: { "Content-Type": "application/json" },
-                      data: data
-                      })
-                      .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                      }).catch(function (error) {
-                          console.log(" error posting response");
-                        console.log(error)
-                  });
-            }
-           
+              console.log(error);
 
+            }
 
-              
-
-      }
+        }
         
       res.sendStatus(200);
             
