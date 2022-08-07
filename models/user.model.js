@@ -54,12 +54,12 @@ const UserSchema = new Schema(
       default: "",
     },
 
-    isParent: {
+    isLandlord: {
         type: Boolean,
         default: false,
       },
 
-    isLearner: {
+    isTenant: {
         type: Boolean,
         default: false,
     },

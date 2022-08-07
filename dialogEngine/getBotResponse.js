@@ -53,7 +53,9 @@ const getBotResponses=async(user,user_response)=>{
          
        console.log("transition is not null")
         //excute transition node actions
-       let executed = await actionsHandler(current_node,user_response,user)
+        if(session!==0){
+          let executed = await actionsHandler(current_node,user_response,user)
+        }
       
       //Problem: solve for a case whereby the transition flow != current node flow
         // if(transition.actions!="none"){
@@ -61,7 +63,7 @@ const getBotResponses=async(user,user_response)=>{
         //   let executed = await actionsHandler(transition,user_response,user)
         // }
   
-        responses = await getMessages(transition,user_response);
+        responses = await getMessages(transition);
         isUpdated = await updateUserSession(user,transition)
         //isUpdated returns a boolean variable 
         if(isUpdated){

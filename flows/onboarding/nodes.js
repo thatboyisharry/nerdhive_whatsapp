@@ -3,7 +3,7 @@ const onboardingNodes=[
         name:'start',
         node:'start',
         flow:'onboarding',
-        actions:[],
+        actions:[{name:'saveName',trigger:'',flow:'onboarding'}],
         uis:[
             {
                 type:'text',
@@ -32,7 +32,7 @@ const onboardingNodes=[
         name:'landlord_or_renter',
         flow:'onboarding',
         node:'landlord_or_renter',
-        actions:[{name:'saveProvince',trigger:'',flow:'landlord'}],
+        actions:[{name:'isTenant',trigger:'renter',flow:'onboarding'},{name:'isLanlord',trigger:'landlord',flow:'onboarding'}],
         uis:[{
             type:'interactive',
             name:"landlord_or_renter"

@@ -56,20 +56,6 @@ const saveName=async(user,name)=>{
     
 }
 ////////////////////////////////////
-const saveGrade=async(user,grade)=>{
-  
-  let data={
-    grade:grade
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-/////////////////////////////////////
 
 const doneOnboarding=async(user)=>{
   
@@ -86,10 +72,25 @@ const doneOnboarding=async(user)=>{
 }
 
 //////////////////////////
-const isParent=async(user)=>{
+const isLandlord=async(user)=>{
   
   let data={
-    isParent:true
+    isLandlord:true
+  }
+  
+  let status = await updateUser(user,data);
+  
+  return status
+  
+    
+}
+
+
+/////////////////////
+const isTenant=async(user)=>{
+  
+  let data={
+    isTenant:true
   }
   
   let status = await updateUser(user,data);
