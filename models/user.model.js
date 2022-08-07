@@ -18,6 +18,10 @@ const FlowSchema = new Schema(
         lastUpdated:{
             type:Date
         },
+        num:{
+          type:Number,
+          default:0
+        }
     }
 )
 
