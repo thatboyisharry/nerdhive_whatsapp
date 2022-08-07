@@ -21,9 +21,9 @@ const request = require("request"),
   app = express().use(body_parser.json()); // creates express http server
   const mongoose = require('mongoose');
   const path = require('path');
-  const { getUserResponse } = require('./dialogEngine/utils');
-  const { getBotResponses } = require('./dialogEngine/engine');
-  const { getUser } = require('./dialogEngine/apiCalls');
+  const { getUserResponse } = require('./dialogEngine/getUserResponse');
+  const { getBotResponses } = require('./dialogEngine/getBotResponse');
+  const { getUser } = require('./services/apiCalls');
 const { updateStatus, sendResponse } = require("./dialogEngine/sendResponse");
 
 // Sets server port and logs message on success
