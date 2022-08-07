@@ -1,5 +1,7 @@
 const { onboardingActions } = require('./onboarding.actions');
 const { landlordFlowActions } = require('./landlord.actions');
+
+
 const actionsHandler= async(node,user_response,user)=>{
   
   if(node.actions&&node.actions.length>0){
@@ -35,8 +37,10 @@ const actionsHandler= async(node,user_response,user)=>{
   
 }
 
-
+export {default as landlordFlowsActions} from './landlord.actions';
 
 module.exports={
-  actionsHandler
+  actionsHandler,
+  landlordFlowActions,
+  la
 }
