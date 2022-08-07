@@ -213,7 +213,7 @@ const landlordNodes=[
         name:'ask_shower_availability',
         flow:'landlord',
         node:'ask_shower_availability',
-        actions:[{name:'hasShower',trigger:"",flow:"flow"}],
+        actions:[{name:'hasShower',trigger:"",flow:"landlord"}],
         uis:[
             {
                 type:'interactive',

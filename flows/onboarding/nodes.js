@@ -32,7 +32,7 @@ const onboardingNodes=[
         name:'landlord_or_renter',
         flow:'onboarding',
         node:'landlord_or_renter',
-        actions:[{name:'isTenant',trigger:'renter',flow:'onboarding'},{name:'isLanlord',trigger:'landlord',flow:'onboarding'}],
+        actions:[{name:'isTenant',trigger:'renter',flow:'onboarding'},{name:'isLandlord',trigger:'landlord',flow:'onboarding'}],
         uis:[{
             type:'interactive',
             name:"landlord_or_renter"
