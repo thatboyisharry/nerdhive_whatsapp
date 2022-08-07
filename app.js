@@ -21,10 +21,10 @@ const request = require("request"),
   app = express().use(body_parser.json()); // creates express http server
   const mongoose = require('mongoose');
   const path = require('path');
-  const { getUserResponse } = require('./dialogEngine/getUserResponse');
-  const { getBotResponses } = require('./dialogEngine/getBotResponse');
+  const { getUserResponse,getBotResponses,sendReponse,updateStatus } = require('./dialogEngine');
+ 
   const { getUser } = require('./services/apiCalls');
-const { updateStatus, sendResponse } = require("./dialogEngine/sendResponse");
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));

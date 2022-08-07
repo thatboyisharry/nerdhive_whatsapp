@@ -37,10 +37,8 @@ const actionsHandler= async(node,user_response,user)=>{
   
 }
 
-export {default as landlordFlowsActions} from './landlord.actions';
+
 
 module.exports={
-  actionsHandler,
-  landlordFlowActions,
-  la
+  actionsHandler
 }
