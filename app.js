@@ -21,7 +21,7 @@ const request = require("request"),
   app = express().use(body_parser.json()); // creates express http server
   const mongoose = require('mongoose');
   const path = require('path');
-  const { getUserResponse,getBotResponses,sendReponse,updateStatus } = require('./dialogEngine');
+  const { getUserResponse,getBotResponses,sendResponse,updateStatus } = require('./dialogEngine');
  
   const { getUser } = require('./services/apiCalls');
 
