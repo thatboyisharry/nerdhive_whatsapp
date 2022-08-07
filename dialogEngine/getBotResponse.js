@@ -42,20 +42,10 @@ const getBotResponses=async(user,user_response)=>{
     console.log("current node")
     console.log(current_node)
     //get the next transition
-      let transition = await getTransition(current_node,user_response); 
-
-    // what if user_response doesn't match any user_response?
-    
-   
-  
-    //execute transition actions using user response
-    // let action_status
-    // if(transition!==null){
-    //     if(transition.function&&transition.function!=="none"){
-    //     //execute the function
-    //       action_status = await actionsHandler(transition,user_response,user)
-    //     }
-    // }
+    let transition = await getTransition(current_node,user_response); 
+    if(session.num===0){
+      transition = current_node;
+    }
 
     let responses;
     let isUpdated;
@@ -63,9 +53,7 @@ const getBotResponses=async(user,user_response)=>{
          
        console.log("transition is not null")
         //excute transition node actions
-        if(transition.flow===current_node.flow){
-          let executed = await actionsHandler(current_node,user_response,user)
-        }
+       let executed = await actionsHandler(current_node,user_response,user)
       
       //Problem: solve for a case whereby the transition flow != current node flow
         // if(transition.actions!="none"){

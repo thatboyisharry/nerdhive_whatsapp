@@ -50,12 +50,14 @@ const addProperty=async(user_id)=>{
 
 const updateUserSession = async (user,transition)=>{
   let date = new Date()
+  let sessionNum = user.session.num +1;
   try{
     let session = {
       session:{
         flow:transition.flow,
         node:transition.name,
-        lastUpdated:date
+        lastUpdated:date,
+        num:sessionNum
       }
       
     }

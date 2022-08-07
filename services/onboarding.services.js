@@ -156,7 +156,8 @@ const startOnboardingFlow=async(user)=>{
     session:{
       flow:'onboarding',
       node:'start',
-      lastUpdated:date
+      lastUpdated:date,
+      num:0,
     }
   }
   return await updateUser(user,data);
