@@ -383,7 +383,7 @@ const landlordNodes=[
                 flow:'landlord', 
                 node:'get_pictures',
                 catchNode:'none',
-                trigger:""
+                trigger:"done"
             }
             
         ],
