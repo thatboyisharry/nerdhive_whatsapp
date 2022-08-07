@@ -1,5 +1,5 @@
-const User = require("../../models/user.model");
-require("../../messages/templates");
+const User = require("../models/user.model");
+
 
 
 const onboardingActions=async(action,user_response,user)=>{
