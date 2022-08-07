@@ -1,8 +1,7 @@
 const { updateUserSession, getUser} = require("../services/apiCalls");
-const { Flows } = require('../flows');
 const { actionsHandler } = require('../actions');
 const { onboardUser} = require("../services/onboarding.services");
-const { getUserResponse, getMessages, getTransition, getFlow, getNode } = require('./utils');
+const { getMessages, getTransition, getFlow, getNode } = require('./utils');
 
 
 
@@ -25,15 +24,10 @@ const getBotResponses=async(user,user_response)=>{
         }
 
   }
-     
-    
-     //user is not onboarding and has a name => go to questionnaire
-   
+  
   
   if(user.isOnboarded|user.isOnboarding){
-    console.log("user inside if onboarding")
     console.log(user)
-    
     let session=user.session;
     console.log("session");
     console.log(session)
@@ -42,20 +36,22 @@ const getBotResponses=async(user,user_response)=>{
     console.log("current node")
     console.log(current_node)
     //get the next transition
+    let executed
+    if(session!==0){
+        executed = await actionsHandler(current_node,user_response,user)
+    }
+    
     let transition = await getTransition(current_node,user_response); 
+    
     if(session.num===0){
       transition = current_node;
     }
 
-    let responses;
-    let isUpdated;
-    if(transition!==null){
+    if(executed&&transition!==null){
          
        console.log("transition is not null")
         //excute transition node actions
-        if(session!==0){
-          let executed = await actionsHandler(current_node,user_response,user)
-        }
+       
       
       //Problem: solve for a case whereby the transition flow != current node flow
         // if(transition.actions!="none"){
@@ -63,8 +59,8 @@ const getBotResponses=async(user,user_response)=>{
         //   let executed = await actionsHandler(transition,user_response,user)
         // }
   
-        responses = await getMessages(transition);
-        isUpdated = await updateUserSession(user,transition)
+        let responses = await getMessages(transition);
+        let isUpdated = await updateUserSession(user,transition);
         //isUpdated returns a boolean variable 
         if(isUpdated){
             console.log("user updated")
