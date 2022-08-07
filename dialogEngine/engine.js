@@ -1,9 +1,7 @@
-const { updateUserSession, getUser} = require("./apiCalls");
+const { updateUserSession, getUser} = require("../services/apiCalls");
 const { Flows } = require('../flows');
-const { actionsHandler } = require('./actions.handler');
-const User = require('../models/user.model');
+const { actionsHandler } = require('../actions');
 const { onboardUser} = require("../services/onboarding.services");
-const { askName, parent_or_learner, start, what_grade_learner, what_grade_parent } = require("../flows/onboarding/ui")
 const { getUserResponse, getMessages, getTransition, getFlow, getNode } = require('./utils');
 
 
@@ -102,29 +100,6 @@ const getBotResponses=async(user,user_response)=>{
 
 
 
-
-
-const isOnboarding=async(user)=>{
-  
-  let data={
-    isOnboarding:true
-  }
-  return await updateUser(user,data);
-}
-
-const updateUser=async(user,data)=>{
-  try{
-     let updatedUser= await User.findByIdAndUpdate(user._id,data)
-      console.log("updated user")
-     return true;
-  
-    
-  }catch(error){
-    console.log(error);
-    return false;
-    
-  }
-}
 
 
 
