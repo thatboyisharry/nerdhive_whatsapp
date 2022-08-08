@@ -470,8 +470,8 @@ const AudioSchema = new Schema (
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
       to:{type:String}, 
-      type:{type:String,default:'document'},
-      document:{
+      type:{type:String,default:'audio'},
+      audio:{
         id:{type:String},
       }
     }
@@ -480,6 +480,55 @@ const AudioSchema = new Schema (
 
 )
 
+const ImageSchema = new Schema (
+  {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'image'},
+      image:{
+        id:{type:String},
+        caption:{type:String}
+      }
+    }
+    
+  }
+
+)
+
+const StickerSchema = new Schema (
+  {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'sticker'},
+      sticker:{
+        id:{type:String},
+      }
+    }
+    
+  }
+
+)
+
+const VideoSchema = new Schema (
+  {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'video'},
+      video:{
+        id:{type:String},
+        caption:{type:String}
+      }
+    }
+    
+  }
+
+)
 module.exports = mongoose.model("InteractiveListDocument", InteractiveListDocumentSchema);
 module.exports = mongoose.model("InteractiveListImage", InteractiveListImageSchema);
 module.exports = mongoose.model("InteractiveListVideo", InteractiveListVideoSchema);
@@ -490,3 +539,9 @@ module.exports = mongoose.model("InteractiveButtonVideo", InteractiveButtonVideo
 module.exports = mongoose.model("InteractiveButtonText", InteractiveButtonTextSchema);
 module.exports = mongoose.model("InteractiveProduct", InteractiveProductSchema);
 module.exports = mongoose.model("InteractiveProductList", InteractiveProductListSchema);
+module.exports = mongoose.model("Image", ImageSchema);
+module.exports = mongoose.model("Video", VideoSchema);
+module.exports = mongoose.model("Text", TextSchema);
+module.exports = mongoose.model("Audio", AudioSchema);
+module.exports = mongoose.model("Document", DocumentSchema);
+module.exports = mongoose.model("Sticker", StickerSchema);
