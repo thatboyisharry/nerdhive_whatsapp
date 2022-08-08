@@ -78,7 +78,7 @@ const TextHeaderSchema = new Schema(
 const RowSchema = new Schema(
     {
         id:{type:String},
-        tittle:{type:String},
+        title:{type:String},
         description:{type:String}
     }
 )
@@ -91,10 +91,24 @@ const SectionSchema = new Schema(
     }
 )
 
+const ButtonSchema = new Schema(
+    {
+       type:{type:String,default:'reply'},
+        reply:{
+          id:{type:String},
+          title:{type:String}
+        }
+    }
+)
 
 
 const InteractiveListDocumentSchema = new Schema (
   {
+    
+    type:{
+      type:String,
+      default:'list'
+    },
     header:{
       type:DocumentHeaderSchema
     },
@@ -114,6 +128,11 @@ const InteractiveListDocumentSchema = new Schema (
 
 const InteractiveListImageSchema = new Schema (
   {
+    
+    type:{
+      type:String,
+      default:'list'
+    },
     header:{
       type:ImageHeaderSchema
     },
@@ -133,6 +152,11 @@ const InteractiveListImageSchema = new Schema (
 
 const InteractiveListVideoSchema = new Schema (
   {
+    
+    type:{
+      type:String,
+      default:'list'
+    },
     header:{
       type:VideoHeaderSchema
     },
@@ -152,6 +176,11 @@ const InteractiveListVideoSchema = new Schema (
 
 const InteractiveListTextSchema = new Schema (
   {
+    
+    type:{
+      type:String,
+      default:'list'
+    },
     header:{
       type:TextHeaderSchema
     },
@@ -169,5 +198,101 @@ const InteractiveListTextSchema = new Schema (
 
 )
 
+const InteractiveButtonDocumentSchema = new Schema (
+  {
+    type:{
+      type:String,
+      default:'button'
+    },
+    header:{
+      type:DocumentHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      buttons:[ButtonSchema]
+      
+    }
+  }
 
-module.exports = mongoose.model("Flow", FlowSchema);
+)
+
+const InteractiveButtonImageSchema = new Schema (
+  {
+    
+    type:{
+      type:String,
+      default:'button'
+    },
+    header:{
+      type:ImageHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      buttons:[ButtonSchema],
+      
+    }
+  }
+
+)
+
+const InteractiveButtonVideoSchema = new Schema (
+  {
+    
+    type:{
+      type:String,
+      default:'button'
+    },
+    header:{
+      type:VideoHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      buttons:[ButtonSchema],
+      
+    }
+  }
+
+)
+
+const InteractiveButtonTextSchema = new Schema (
+  {
+    
+    type:{
+      type:String,
+      default:'button'
+    },
+    header:{
+      type:TextHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      buttons:[ButtonSchema],
+    }
+  }
+
+)
+
+
+
+module.exports = mongoose.model("InteractiveListDocument", InteractiveListDocumentSchema);
+module.exports = mongoose.model("InteractiveList", InteractiveListSchema);
