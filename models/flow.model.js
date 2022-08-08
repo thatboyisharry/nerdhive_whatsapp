@@ -1,168 +1,75 @@
-const User = require("../models/user.model");
-require("../messages/templates");
+const mongoose = require("mongoose");
 
 
-
-const onboardUser=async(user,msg)=>{
-  console.log("inside onboarding...")
-  //
-  if(!user.isOnboarding){
-     let onboarding=isOnboarding(user);
-  // change flow to onboarding flow
-      if(onboarding){
-      let isOnboardingFlow=await startOnboardingFlow(user);
-      if(isOnboardingFlow){
-        return true
+const Schema = mongoose.Schema;
+const NextNodeSchema = new Schema(
+    {
+        name:{
+            type:String
+        },
+        flow:{
+            type:String
         }
-      }
-  }
-  
- 
-}
-
-
-const onboardingActions=async(action,user_response,user)=>{
-  let action_status
-  if(action==='isLearner'){
-    action_status = await isLearner(user);
-  }
-  if(action==='saveName'){
-    console.log("saving name")
-    action_status = await saveName(user,user_response);
-  }
-  if(action=='isParent'){
-    action_status = await isParent(user);
-  }
-  
-  if(action==="saveGrade"){
-    action_status = await saveGrade(user,user_response);
-  }
-  
-  if(action==="doneOnboarding"){
-    action_status = await doneOnboarding(user)
-  }
-  
-  return action_status
-}
-
-
-
-const isLearner=async(user)=>{
-  
-  let data={
-    isLearner:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-
-//////////////////
-const saveName=async(user,name)=>{
-  
-  let data={
-    name:name
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-////////////////////////////////////
-const saveGrade=async(user,grade)=>{
-  
-  let data={
-    grade:grade
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-/////////////////////////////////////
-
-const doneOnboarding=async(user)=>{
-  
-  let data={
-    isOnboarding:false,
-    isOnboarded:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-//////////////////////////
-const isParent=async(user)=>{
-  
-  let data={
-    isParent:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
-  
-    
-}
-
-
-/////////////////////
-const updateUser=async(user,data)=>{
-  try{
-     let updatedUser= await User.findByIdAndUpdate(user._id,data)
-      console.log("updated user")
-      console.log(data)
-      console.log(updatedUser)
-     return true;
-  
-    
-  }catch(error){
-    console.log(error);
-    return false;
-    
-  }
-}
-
-module.exports = {
-  onboardingActions,
-  updateUser
-}
-
-const isOnboarding=async(user)=>{
-  console.log("switching onboarding")
-  let data={
-    isOnboarding:true
-  }
-  return await updateUser(user,data);
-}
-
-const startOnboardingFlow=async(user)=>{
-  console.log("starting onboarding flow")
-  let date = new Date()
-  let data={
-    session:{
-      flow:'onboarding',
-      node:'start',
-      lastUpdated:date
     }
-  }
-  return await updateUser(user,data);
-}
+)
+const TransitionSchema = new Schema(
 
+    {
+        name:{
+            type:String,
+            required:true 
+        },
+        function:{
+            type:String
+        },
+        nextNode:{
+            type:NextNodeSchema
+        }
+    }
+)
 
-module.exports={
-  onboardUser
-}
+const UISchema = new Schema(
+    {
+        type:{
+            type:String
+        },
+        value:{
+            type:String
+        },
+        name:{
+            type:String
+        }
+    }
+)
+
+const NodeSchema = new Schema(
+    {
+        name:{
+            type:String,
+            required:true,
+        },
+        transitions:{
+            type:[TransitionSchema]
+        },
+        uis:{
+            type:[UISchema]
+        }
+    }
+)
+
+const FlowSchema = new Schema(
+    {
+        name:{
+            type:String,
+            required:true,
+        },
+        nodes:{
+            type:[NodeSchema]
+        },
+        user_interfaces:{
+            type:[]
+        }
+    }
+)
+
+module.exports = mongoose.model("Flow", FlowSchema);
