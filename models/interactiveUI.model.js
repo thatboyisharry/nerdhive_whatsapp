@@ -86,7 +86,7 @@ const RowSchema = new Schema(
 
 const SectionSchema = new Schema(
     {
-        title:{tyepe:String},
+        title:{type:String},
         rows:[RowSchema]
     }
 )
@@ -101,6 +101,18 @@ const ButtonSchema = new Schema(
     }
 )
 
+const ProductSchema = new Schema(
+    {
+        product_retailer_id:{type:String},
+    }
+)
+
+const ProductSectionSchema = new Schema(
+    {
+        title:{type:String},
+        product_items:[ProductSchema]
+    }
+)
 
 const InteractiveListDocumentSchema = new Schema (
   {
@@ -292,7 +304,7 @@ const InteractiveButtonTextSchema = new Schema (
 
 )
 
-const InteraxSchema = new Schema (
+const InteractiveProductSchema = new Schema (
   {
     
     type:{
@@ -316,7 +328,29 @@ const InteraxSchema = new Schema (
 
 )
 
+const InteractiveProductListSchema = new Schema (
+  {
+    
+    type:{
+      type:String,
+      default:'product_list'
+    },
+    header:{
+      type:TextHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      catalog_id:{type:String},
+      sections:[ProductSectionSchema]
+    }
+  }
 
+)
 
 
 module.exports = mongoose.model("InteractiveListDocument", InteractiveListDocumentSchema);
@@ -328,3 +362,4 @@ module.exports = mongoose.model("InteractiveButtonImage", InteractiveButtonImage
 module.exports = mongoose.model("InteractiveButtonVideo", InteractiveButtonVideoSchema);
 module.exports = mongoose.model("InteractiveButtonText", InteractiveButtonTextSchema);
 module.exports = mongoose.model("InteractiveProduct", InteractiveProductSchema);
+module.exports = mongoose.model("InteractiveProductList", InteractiveProductListSchema);
