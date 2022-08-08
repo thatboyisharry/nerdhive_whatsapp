@@ -430,7 +430,55 @@ const InteractiveProductListSchema = new Schema (
     }
   }
 )
+const TextSchema = new Schema (
+  {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'text'},
+      text:{
+        body:{type:String}
+      }
+    }
+    
+  }
 
+)
+
+const DocumentSchema = new Schema (
+  {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'document'},
+      document:{
+        id:{type:String},
+        caption:{type:String},
+        filename:{type:String}
+      }
+    }
+    
+  }
+
+)
+
+const AudioSchema = new Schema (
+  {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'document'},
+      document:{
+        id:{type:String},
+      }
+    }
+    
+  }
+
+)
 
 module.exports = mongoose.model("InteractiveListDocument", InteractiveListDocumentSchema);
 module.exports = mongoose.model("InteractiveListImage", InteractiveListImageSchema);
