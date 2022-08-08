@@ -116,95 +116,127 @@ const ProductSectionSchema = new Schema(
 
 const InteractiveListDocumentSchema = new Schema (
   {
-    
-    type:{
-      type:String,
-      default:'list'
-    },
-    header:{
-      type:DocumentHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      button:{type:String},
-      sections:[SectionSchema]
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'list'
+        },
+        header:{
+          type:DocumentHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          button:{type:String},
+          sections:[SectionSchema]
+        }
+      }
     }
+    
   }
 
 )
 
 const InteractiveListImageSchema = new Schema (
   {
-    
-    type:{
-      type:String,
-      default:'list'
-    },
-    header:{
-      type:ImageHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      button:{type:String},
-      sections:[SectionSchema]
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'list'
+        },
+        header:{
+          type:ImageHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          button:{type:String},
+          sections:[SectionSchema]
+        }
+      }
     }
+    
   }
 
 )
 
 const InteractiveListVideoSchema = new Schema (
   {
-    
-    type:{
-      type:String,
-      default:'list'
-    },
-    header:{
-      type:VideoHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      button:{type:String},
-      sections:[SectionSchema]
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'list'
+        },
+        header:{
+          type:VideoHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          button:{type:String},
+          sections:[SectionSchema]
+        }
+      }
     }
+    
   }
 
 )
 
 const InteractiveListTextSchema = new Schema (
   {
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'list'
+        },
+        header:{
+          type:TextHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          button:{type:String},
+          sections:[SectionSchema]
+        }
+      }
     
-    type:{
-      type:String,
-      default:'list'
-    },
-    header:{
-      type:TextHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      button:{type:String},
-      sections:[SectionSchema]
     }
   }
 
@@ -212,55 +244,61 @@ const InteractiveListTextSchema = new Schema (
 
 const InteractiveButtonDocumentSchema = new Schema (
   {
-    messaging_product:{type:String, default: "whatsapp"},
-    recipient_type:"individual",
-    to:{type:String}, 
-    type:{type:String,default:'interactive'},
-    {}
-    type:{
-      type:String,
-      default:'button'
-    },
-    header:{
-      type:DocumentHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      buttons:[ButtonSchema]
-      
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'button'
+        },
+        header:{
+          type:DocumentHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          buttons:[ButtonSchema]
+
+        }
+      }
     }
+    
   }
 
 )
 
 const InteractiveButtonImageSchema = new Schema (
   {
-    messaging_product:{type:String, default: "whatsapp"},
-    recipient_type:"individual",
-    to:{type:String}, 
-    type:{type:String,default:'interactive'},
-    interactive:{
-      type:{
-      type:String,
-      default:'button'
-      },
-      header:{
-        type:ImageHeaderSchema
-      },
-      body:{
-        text:{type:String}
-      },
-      footer:{
-        text:{type:String}
-      },
-      action:{
-        buttons:[ButtonSchema],
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'button'
+        },
+        header:{
+          type:ImageHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          buttons:[ButtonSchema],
 
+        }
       }
     }
     
@@ -270,17 +308,80 @@ const InteractiveButtonImageSchema = new Schema (
 
 const InteractiveButtonVideoSchema = new Schema (
   {  
+      value:{
+        messaging_product:{type:String, default: "whatsapp"},
+        recipient_type:"individual",
+        to:{type:String}, 
+        type:{type:String,default:'interactive'},
+        interactive:{
+              type:{
+                  type:String,
+                  default:'button'
+              },
+              header:{
+                type:VideoHeaderSchema
+              },
+              body:{
+                text:{type:String}
+              },
+              footer:{
+                text:{type:String}
+              },
+              action:{
+                buttons:[ButtonSchema],
+
+              }
+        }
+      }
+  }
+
+)
+
+const InteractiveButtonTextSchema = new Schema (
+  {
+    value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
       to:{type:String}, 
       type:{type:String,default:'interactive'},
       interactive:{
-            type:{
-                type:String,
-                default:'button'
+        type:{
+        type:String,
+        default:'button'
+        },
+        header:{
+          type:TextHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          buttons:[ButtonSchema],
+        }
+      }
+    }
+    
+  }
+
+)
+
+const InteractiveProductSchema = new Schema (
+  {
+    value:{
+        messaging_product:{type:String, default: "whatsapp"},
+        recipient_type:"individual",
+        to:{type:String}, 
+        type:{type:String,default:'interactive'},
+        interactive:{
+          type:{
+              type:String,
+              default:'product'
             },
             header:{
-              type:VideoHeaderSchema
+              type:TextHeaderSchema
             },
             body:{
               text:{type:String}
@@ -289,83 +390,45 @@ const InteractiveButtonVideoSchema = new Schema (
               text:{type:String}
             },
             action:{
-              buttons:[ButtonSchema],
-
+              catalog_id:{type:String},
+              product_retailer_id:{type:String}
             }
+        }
     }
-  }
-
-)
-
-const InteractiveButtonTextSchema = new Schema (
-  {
     
-    type:{
-      type:String,
-      default:'button'
-    },
-    header:{
-      type:TextHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      buttons:[ButtonSchema],
-    }
-  }
-
-)
-
-const InteractiveProductSchema = new Schema (
-  {
-    
-    type:{
-      type:String,
-      default:'product'
-    },
-    header:{
-      type:TextHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      catalog_id:{type:String},
-      product_retailer_id:{type:String}
-    }
   }
 
 )
 
 const InteractiveProductListSchema = new Schema (
   {
-    
-    type:{
-      type:String,
-      default:'product_list'
-    },
-    header:{
-      type:TextHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      catalog_id:{type:String},
-      sections:[ProductSectionSchema]
+    value:{
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+        type:{
+        type:String,
+        default:'product_list'
+        },
+        header:{
+          type:TextHeaderSchema
+        },
+        body:{
+          text:{type:String}
+        },
+        footer:{
+          text:{type:String}
+        },
+        action:{
+          catalog_id:{type:String},
+          sections:[ProductSectionSchema]
+        }
+      }
+
     }
   }
-
 )
 
 
