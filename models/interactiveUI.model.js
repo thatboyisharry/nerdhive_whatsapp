@@ -292,7 +292,39 @@ const InteractiveButtonTextSchema = new Schema (
 
 )
 
+const InteraxSchema = new Schema (
+  {
+    
+    type:{
+      type:String,
+      default:'product'
+    },
+    header:{
+      type:TextHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      catalog_id:{type:String},
+      product_retailer_id:{type:String}
+    }
+  }
+
+)
+
+
 
 
 module.exports = mongoose.model("InteractiveListDocument", InteractiveListDocumentSchema);
-module.exports = mongoose.model("InteractiveList", InteractiveListSchema);
+module.exports = mongoose.model("InteractiveListImage", InteractiveListImageSchema);
+module.exports = mongoose.model("InteractiveListVideo", InteractiveListVideoSchema);
+module.exports = mongoose.model("InteractiveListText", InteractiveListTextSchema);
+module.exports = mongoose.model("InteractiveButtonDocument", InteractiveButtonDocumentSchema);
+module.exports = mongoose.model("InteractiveButtonImage", InteractiveButtonImageSchema);
+module.exports = mongoose.model("InteractiveButtonVideo", InteractiveButtonVideoSchema);
+module.exports = mongoose.model("InteractiveButtonText", InteractiveButtonTextSchema);
+module.exports = mongoose.model("InteractiveProduct", InteractiveProductSchema);
