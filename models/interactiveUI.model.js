@@ -75,7 +75,99 @@ const TextHeaderSchema = new Schema(
     }
 )
 
+const RowSchema = new Schema(
+    {
+        id:{type:String},
+        tittle:{type:String},
+        description:{type:String}
+    }
+)
 
+
+const SectionSchema = new Schema(
+    {
+        title:{tyepe:String},
+        rows:[RowSchema]
+    }
+)
+
+
+
+const InteractiveListDocumentSchema = new Schema (
+  {
+    header:{
+      type:DocumentHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      button:{type:String},
+      sections:[SectionSchema]
+    }
+  }
+
+)
+
+const InteractiveListImageSchema = new Schema (
+  {
+    header:{
+      type:ImageHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      button:{type:String},
+      sections:[SectionSchema]
+    }
+  }
+
+)
+
+const InteractiveListVideoSchema = new Schema (
+  {
+    header:{
+      type:VideoHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      button:{type:String},
+      sections:[SectionSchema]
+    }
+  }
+
+)
+
+const InteractiveListTextSchema = new Schema (
+  {
+    header:{
+      type:TextHeaderSchema
+    },
+    body:{
+      text:{type:String}
+    },
+    footer:{
+      text:{type:String}
+    },
+    action:{
+      button:{type:String},
+      sections:[SectionSchema]
+    }
+  }
+
+)
 
 
 module.exports = mongoose.model("Flow", FlowSchema);
