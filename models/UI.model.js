@@ -212,6 +212,11 @@ const InteractiveListTextSchema = new Schema (
 
 const InteractiveButtonDocumentSchema = new Schema (
   {
+    messaging_product:{type:String, default: "whatsapp"},
+    recipient_type:"individual",
+    to:{type:String}, 
+    type:{type:String,default:'interactive'},
+    {}
     type:{
       type:String,
       default:'button'
@@ -235,47 +240,58 @@ const InteractiveButtonDocumentSchema = new Schema (
 
 const InteractiveButtonImageSchema = new Schema (
   {
-    
-    type:{
+    messaging_product:{type:String, default: "whatsapp"},
+    recipient_type:"individual",
+    to:{type:String}, 
+    type:{type:String,default:'interactive'},
+    interactive:{
+      type:{
       type:String,
       default:'button'
-    },
-    header:{
-      type:ImageHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      buttons:[ButtonSchema],
-      
+      },
+      header:{
+        type:ImageHeaderSchema
+      },
+      body:{
+        text:{type:String}
+      },
+      footer:{
+        text:{type:String}
+      },
+      action:{
+        buttons:[ButtonSchema],
+
+      }
     }
+    
   }
 
 )
 
 const InteractiveButtonVideoSchema = new Schema (
-  {
-    
-    type:{
-      type:String,
-      default:'button'
-    },
-    header:{
-      type:VideoHeaderSchema
-    },
-    body:{
-      text:{type:String}
-    },
-    footer:{
-      text:{type:String}
-    },
-    action:{
-      buttons:[ButtonSchema],
-      
+  {  
+      messaging_product:{type:String, default: "whatsapp"},
+      recipient_type:"individual",
+      to:{type:String}, 
+      type:{type:String,default:'interactive'},
+      interactive:{
+            type:{
+                type:String,
+                default:'button'
+            },
+            header:{
+              type:VideoHeaderSchema
+            },
+            body:{
+              text:{type:String}
+            },
+            footer:{
+              text:{type:String}
+            },
+            action:{
+              buttons:[ButtonSchema],
+
+            }
     }
   }
 
