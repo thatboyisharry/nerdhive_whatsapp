@@ -24,7 +24,8 @@ const onboardingNodes=[
                 triger:""
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     },
     ///////////////////////////////
@@ -55,7 +56,8 @@ const onboardingNodes=[
                 trigger:'renter'
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
     },
    
 ]

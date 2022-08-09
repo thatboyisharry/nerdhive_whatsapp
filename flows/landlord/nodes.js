@@ -19,7 +19,8 @@ const landlordNodes=[
                 trigger:""
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -44,7 +45,8 @@ const landlordNodes=[
                 trigger:""
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -68,7 +70,8 @@ const landlordNodes=[
                 trigger:""
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -92,7 +95,8 @@ const landlordNodes=[
                 trigger:""
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -123,7 +127,8 @@ const landlordNodes=[
                 trigger:"apartment"
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -148,7 +153,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -174,7 +180,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -205,7 +212,8 @@ const landlordNodes=[
                 trigger:"no"
             }
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -230,7 +238,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -255,7 +264,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -280,7 +290,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -312,7 +323,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -337,7 +349,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -362,7 +375,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:false
 
     
     },
@@ -387,7 +401,8 @@ const landlordNodes=[
             }
             
         ],
-        catch:""
+        catch:"",
+        sticky:true
 
     
     },
@@ -412,7 +427,8 @@ const landlordNodes=[
               }
 
           ],
-          catch:""
+          catch:"",
+        sticky:false
 
 
       },

@@ -70,6 +70,10 @@ const NodeSchema = new Schema(
         actions:[ActionSchema],
         uis:[UISchema],
         catch:'',
+        sticky:{
+          type:Boolean,
+          default:false
+        },
         transitions:{
             type:[TransitionSchema]
         },

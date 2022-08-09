@@ -28,7 +28,9 @@ const { Flows } = require('../flows');
       //if node has only one none response dependent transition
    
    
-    
+    if(node.sticky){
+      return null
+    }
    
     if(node.transitions.length==1){
       return node.transitions[0]
