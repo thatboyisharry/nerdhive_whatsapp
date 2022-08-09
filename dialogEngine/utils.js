@@ -147,7 +147,7 @@ const getResponses=async(flow,next_node,user)=>{
             type:'template'
             }
             bot_response.template=user_interface
-            
+            bot_response.template.components[0].parameters[0].text=user.name;
             responses.push(bot_response)
         }
     

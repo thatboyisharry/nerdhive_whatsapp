@@ -26,8 +26,9 @@ landlord_or_renter.value={
     "parameters": [
         {
             "type": "text",
-            "text": "your-text-string"
+            "text": ""
         }]
+  }]
 }
 
 
