@@ -301,7 +301,7 @@ const saveAdditionalInfo=async(user,additionalInfo)=>{
 
 const savePropertyPictures=async(user,image_id)=>{
   
-    let data=image_id
+    let data={id:image_id}
     let type='image'
     
     let status = await updateProperty(user,data,type);
