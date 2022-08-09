@@ -39,6 +39,23 @@ const ActionSchema = new Schema(
     }
 )
 
+const UISchema = new Schema(
+    {
+        name:{
+            type:String,
+            required:true
+          
+        },
+        flow:{
+            type:String,
+            required:true
+        },
+        value:{
+            
+        }
+    }
+)
+
 
 const NodeSchema = new Schema(
     {
@@ -51,7 +68,7 @@ const NodeSchema = new Schema(
             required:true,
         },
         actions:[ActionSchema],
-        uis:[],
+        uis:[UISchema],
         catch:'',
         transitions:{
             type:[TransitionSchema]
