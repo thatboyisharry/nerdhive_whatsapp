@@ -15,7 +15,7 @@ let message = "Welcome to Homely Rentals"
 //  const landlord_or_renter = createInteractiveButton('landlord_or_renter',buttons);
 // landlord_or_renter.value.body.text="which one are you ?"
 
-const landlord_or_renter ={ type:'template'};
+const landlord_or_renter ={ type:'template',name:'landlord_or_renter'};
 landlord_or_renter.value={
   name:'landlord_or_renter',
   language:{

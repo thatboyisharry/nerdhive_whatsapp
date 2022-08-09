@@ -123,7 +123,7 @@ const getResponses=async(flow,next_node,user)=>{
     
         }
 
-        if(user_interface.type!=='text'){
+        if(user_interface.type==='interactive'){
             bot_response={
             messaging_product: "whatsapp",
             recipient_type:"individual",
