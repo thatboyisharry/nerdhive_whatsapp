@@ -41,7 +41,7 @@ const getBotResponses=async(user,user_response)=>{
         executed = await actionsHandler(current_node,user_response,user)
     }
     
-    let transition = await getTransition(current_node,user_response); 
+    let transition = await getTransition(current_node,user_response,user); 
     
     if(session.num===0){
       transition = current_node;
