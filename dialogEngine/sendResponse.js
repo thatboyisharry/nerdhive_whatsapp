@@ -54,7 +54,7 @@ const sendResponse=async(phone_number_id,token,user_num,bot_responses)=>{
                   console.log(JSON.stringify(response.data));
                 }).catch(function (error) {
                     console.log(" error posting response");
-                  console.log(error)
+                  // console.log(error)
             });
       }
 

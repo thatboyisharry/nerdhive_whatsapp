@@ -4,21 +4,18 @@ const User = require("../models/user.model");
 
 const onboardingActions=async(action,user_response,user)=>{
   let action_status
-  if(action==='isLearner'){
-    action_status = await isLearner(user);
-  }
+  
   if(action==='saveName'){
     console.log("saving name")
     action_status = await saveName(user,user_response);
   }
-  if(action=='isParent'){
-    action_status = await isParent(user);
+  if(action=='isLandlord'){
+    action_status = await isLandlord(user);
   }
   
-  if(action==="saveGrade"){
-    action_status = await saveGrade(user,user_response);
+  if(action=='isTenant'){
+    action_status = await isTenant(user);
   }
-  
   if(action==="doneOnboarding"){
     action_status = await doneOnboarding(user)
   }
