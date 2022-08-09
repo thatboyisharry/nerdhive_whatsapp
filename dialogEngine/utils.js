@@ -77,7 +77,7 @@ const getFlow=async(flow_name)=>{
 }
 
 
-const getMessages=async(transition)=>{
+const getMessages=async(transition,user)=>{
     let flow = await getFlow(transition.flow);
     let node=transition
    
@@ -85,12 +85,12 @@ const getMessages=async(transition)=>{
     
     
     console.log("inside get messages")
-    let messages = await getResponses(flow,node)
+    let messages = await getResponses(flow,node,user)
 
     return messages
 }
 
-const getResponses=async(flow,next_node)=>{
+const getResponses=async(flow,next_node,user)=>{
     console.log("inside get responses")
     let UIs=[];
     for(let i = 0 ; i<next_node.uis.length;i++){
@@ -139,8 +139,15 @@ const getResponses=async(flow,next_node)=>{
             responses.push(bot_response)
         }
       
-        if(user_interface.type==='templa'){
-            bot_response=user_interface
+        if(user_interface.type==='template'){
+             bot_response={
+            messaging_product: "whatsapp",
+            recipient_type:"individual",
+            to:'', 
+            type:'template'
+            }
+            bot_response.template=user_interface
+            
             responses.push(bot_response)
         }
     

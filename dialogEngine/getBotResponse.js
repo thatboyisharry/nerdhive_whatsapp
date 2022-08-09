@@ -59,7 +59,7 @@ const getBotResponses=async(user,user_response)=>{
         //   let executed = await actionsHandler(transition,user_response,user)
         // }
   
-        let responses = await getMessages(transition);
+        let responses = await getMessages(transition,user);
         let isUpdated = await updateUserSession(user,transition);
         //isUpdated returns a boolean variable 
         if(isUpdated){

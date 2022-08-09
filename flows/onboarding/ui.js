@@ -9,11 +9,26 @@ let message = "Welcome to Homely Rentals"
 ///////////////////////////
 
 
-const landlord = createButton('landlord','Landlord');
-const renter = createButton('renter','Renter');
-let buttons=[landlord,renter]
- const landlord_or_renter = createInteractiveButton('landlord_or_renter',buttons);
-landlord_or_renter.value.body.text="which one are you ?"
+// const landlord = createButton('landlord','Landlord');
+// const renter = createButton('renter','Renter');
+// let buttons=[landlord,renter]
+//  const landlord_or_renter = createInteractiveButton('landlord_or_renter',buttons);
+// landlord_or_renter.value.body.text="which one are you ?"
+
+const landlord_or_renter ={ type:'template'};
+landlord_or_renter.value={
+  name:'landlord_or_renter',
+  language:{
+    code:'en'
+  },
+  components: [{
+    type: "body",
+    "parameters": [
+        {
+            "type": "text",
+            "text": "your-text-string"
+        }]
+}
 
 
 
