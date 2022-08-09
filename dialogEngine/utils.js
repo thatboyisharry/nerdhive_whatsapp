@@ -130,12 +130,12 @@ const getResponses=async(flow,next_node,user)=>{
             to:'', 
             type:'interactive'
             }
-            bot_response.interactive=user_interface
+            bot_response.interactive=user_interface.value
             responses.push(bot_response)
         }
     
         if(user_interface.type==='text'){
-            bot_response=user_interface
+            bot_response=user_interface.value
             responses.push(bot_response)
         }
       
@@ -146,9 +146,10 @@ const getResponses=async(flow,next_node,user)=>{
             to:'', 
             type:'template'
             }
-            bot_response.template=user_interface
+            bot_response.template=user_interface.value
             bot_response.template.components[0].parameters[0].text=user.name;
             responses.push(bot_response)
+            console.log(responses)
         }
     
     
@@ -172,7 +173,7 @@ const getUI=(flow,ui_name)=>{
     for(let i = 0; i<flow_UIs.length;i++){
         let ui=flow_UIs[i]
         if(ui.name===ui_name){
-            return ui.value;
+            return ui;
         }
     }
     
