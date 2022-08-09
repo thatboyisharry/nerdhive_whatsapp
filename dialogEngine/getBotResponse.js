@@ -47,7 +47,7 @@ const getBotResponses=async(user,user_response)=>{
       transition = current_node;
     }
 
-    if(executed&&transition!==null){
+    if(transition!==null){
          
        console.log("transition is not null")
         //excute transition node actions
