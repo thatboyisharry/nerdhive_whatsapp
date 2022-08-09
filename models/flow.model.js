@@ -2,16 +2,7 @@ const mongoose = require("mongoose");
 
 
 const Schema = mongoose.Schema;
-const NextNodeSchema = new Schema(
-    {
-        name:{
-            type:String
-        },
-        flow:{
-            type:String
-        }
-    }
-)
+c
 const TransitionSchema = new Schema(
 
     {
@@ -19,11 +10,13 @@ const TransitionSchema = new Schema(
             type:String,
             required:true 
         },
-        function:{
-            type:String
+        flow:{
+            type:String,
+            required:true
         },
-        nextNode:{
-            type:NextNodeSchema
+        trigger:{
+            type:String
+            default
         }
     }
 )
@@ -65,9 +58,6 @@ const FlowSchema = new Schema(
         },
         nodes:{
             type:[NodeSchema]
-        },
-        user_interfaces:{
-            type:[]
         }
     }
 )
