@@ -58,8 +58,8 @@ const getBotResponses=async(user,user_response)=>{
         //   console.log("excuting actions......")
         //   let executed = await actionsHandler(transition,user_response,user)
         // }
-  
-        let responses = await getMessages(transition,user);
+        let updatedUser = await getUser(user.phone);
+        let responses = await getMessages(transition,updatedUser);
         let isUpdated = await updateUserSession(user,transition);
         //isUpdated returns a boolean variable 
         if(isUpdated){
