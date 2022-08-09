@@ -76,7 +76,7 @@ const landlordNodes=[
         name:'ask_address',
         flow:'landlord',
         node:'ask_address',
-        actions:[{name:'saveAddress',trigger:'',flow:'landlord'}],
+        actions:[{name:'saveStreetAddress',trigger:'',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
