@@ -116,6 +116,9 @@ const ProductSectionSchema = new Schema(
 
 const InteractiveListDocumentSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -148,6 +151,9 @@ const InteractiveListDocumentSchema = new Schema (
 
 const InteractiveListImageSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -180,6 +186,9 @@ const InteractiveListImageSchema = new Schema (
 
 const InteractiveListVideoSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -212,6 +221,9 @@ const InteractiveListVideoSchema = new Schema (
 
 const InteractiveListTextSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -244,6 +256,9 @@ const InteractiveListTextSchema = new Schema (
 
 const InteractiveButtonDocumentSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -276,6 +291,9 @@ const InteractiveButtonDocumentSchema = new Schema (
 
 const InteractiveButtonImageSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -308,6 +326,9 @@ const InteractiveButtonImageSchema = new Schema (
 
 const InteractiveButtonVideoSchema = new Schema (
   {  
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
       value:{
         messaging_product:{type:String, default: "whatsapp"},
         recipient_type:"individual",
@@ -339,6 +360,9 @@ const InteractiveButtonVideoSchema = new Schema (
 
 const InteractiveButtonTextSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -370,6 +394,9 @@ const InteractiveButtonTextSchema = new Schema (
 
 const InteractiveProductSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
         messaging_product:{type:String, default: "whatsapp"},
         recipient_type:"individual",
@@ -402,6 +429,9 @@ const InteractiveProductSchema = new Schema (
 
 const InteractiveProductListSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -432,6 +462,9 @@ const InteractiveProductListSchema = new Schema (
 )
 const TextSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -448,6 +481,9 @@ const TextSchema = new Schema (
 
 const DocumentSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -466,6 +502,9 @@ const DocumentSchema = new Schema (
 
 const AudioSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -482,6 +521,9 @@ const AudioSchema = new Schema (
 
 const ImageSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -499,6 +541,9 @@ const ImageSchema = new Schema (
 
 const StickerSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
@@ -515,6 +560,9 @@ const StickerSchema = new Schema (
 
 const VideoSchema = new Schema (
   {
+    name:{type:String},
+    type:{type:String},
+    flow:{type:String}.
     value:{
       messaging_product:{type:String, default: "whatsapp"},
       recipient_type:"individual",
