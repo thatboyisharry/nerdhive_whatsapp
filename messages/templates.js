@@ -1,6 +1,7 @@
 class TextUI{
           constructor(name,body){
               this.name=name;
+              this.type='text';
               this.value={
                   "messaging_product": "whatsapp",
                   recipient_type:"individual",
@@ -17,6 +18,7 @@ class TextUI{
       class InteractiveButton {
           constructor(name){
               this.name=name;
+              this.type='interactive';
               this.value={
                   type:'button',
     
@@ -35,7 +37,7 @@ class TextUI{
  class InteractiveList {
     constructor(name){
         this.name=name;
-      
+        this.type='interactive';
         this.value={
             type:'list',
             header:{
