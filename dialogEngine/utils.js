@@ -138,6 +138,12 @@ const getResponses=async(flow,next_node)=>{
             bot_response=user_interface
             responses.push(bot_response)
         }
+      
+        if(user_interface.type==='templa'){
+            bot_response=user_interface
+            responses.push(bot_response)
+        }
+    
     
     
        
