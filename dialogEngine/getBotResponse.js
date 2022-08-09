@@ -36,8 +36,8 @@ const getBotResponses=async(user,user_response)=>{
     console.log("current node")
     console.log(current_node)
     //get the next transition
-    let executed
-    if(session!==0){
+    let executed = true;
+    if(session.num!==0){
         executed = await actionsHandler(current_node,user_response,user)
     }
     
@@ -47,7 +47,7 @@ const getBotResponses=async(user,user_response)=>{
       transition = current_node;
     }
 
-    if(transition!==null){
+    if(executed&&transition!==null){
          
        console.log("transition is not null")
         //excute transition node actions
