@@ -327,9 +327,10 @@ console.log(data)
       console.log(property)
      if(type&&type==="image"){
        console.log('saving image')
-       let Imagesdata=property.images.push(data);
-        console.log(`array length ${Imagesdata.length}`)
-       data=Imagesdata
+        images.push(data);
+        console.log(`array length ${images.length}`)
+       console.log(images)
+       data={images:images};
       }
      let updatedUser= await Property.findByIdAndUpdate(property._id,data)
       console.log("updated user")
