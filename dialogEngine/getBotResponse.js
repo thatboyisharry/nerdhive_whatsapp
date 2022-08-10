@@ -37,11 +37,21 @@ const getBotResponses=async(user,user_response)=>{
     console.log(current_node)
     //get the next transition
     let executed = true;
-    if(session.num!==0){
+    let transition;
+    
+    if(current_node.sticky){
+      transition = await getTransition(current_node,user_response,user); 
+      if(transition==null&&session.num!=0){
         executed = await actionsHandler(current_node,user_response,user)
+        }
+    }else{
+      if(session.num!==0){
+        executed = await actionsHandler(current_node,user_response,user)
+      }
+      transition = await getTransition(current_node,user_response,user); 
     }
     
-    let transition = await getTransition(current_node,user_response,user); 
+    
     
     if(session.num===0){
       transition = current_node;
@@ -50,14 +60,7 @@ const getBotResponses=async(user,user_response)=>{
     if(executed&&transition!==null){
          
        console.log("transition is not null")
-        //excute transition node actions
-       
-      
-      //Problem: solve for a case whereby the transition flow != current node flow
-        // if(transition.actions!="none"){
-        //   console.log("excuting actions......")
-        //   let executed = await actionsHandler(transition,user_response,user)
-        // }
+        
         let updatedUser = await getUser(user.phone);
         let responses = await getMessages(transition,updatedUser);
         let isUpdated = await updateUserSession(user,transition);
