@@ -323,6 +323,7 @@ const updateProperty=async(user,data,type)=>{
      let property=await getProperty(user._id) 
      if(type&&type==="image"){
        console.log('saving image')
+       console.log(`array length ${property.images.length}`)
        data=property.images.push(data);
       }
      let updatedUser= await Property.findByIdAndUpdate(property._id,data)

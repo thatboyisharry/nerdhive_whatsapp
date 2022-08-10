@@ -56,7 +56,7 @@ const PropertySchema = new Schema(
             type:String,
         },
         images:{
-          type:[String]
+          type:[{id:{type:String}}]
         }
     }
 )
