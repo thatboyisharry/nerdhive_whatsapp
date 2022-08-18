@@ -58,6 +58,8 @@ const UISchema = new Schema(
 
 
 const NodeSchema = new Schema(
+  
+  
     {
         name:{
             type:String,
@@ -79,6 +81,7 @@ const NodeSchema = new Schema(
         },
       
     }
+  
 )
 
 const FlowSchema = new Schema(
