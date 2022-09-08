@@ -189,7 +189,7 @@ const landlordNodes=[
         name:'ask_own_bathroom_availability',
         flow:'landlord',
         node:'ask_own_bathroom_availability',
-        actions:[{name:'hasOwnBathroom',trigger:'',flow:'landlord'}],
+        actions:[{name:'hasOwnBathroom',trigger:'yes',flow:'landlord'}],
         uis:[
             {
                 type:'interactive',
