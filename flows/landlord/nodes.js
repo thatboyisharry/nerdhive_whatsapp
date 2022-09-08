@@ -172,7 +172,7 @@ const landlordNodes=[
         transitions:[
            
             {
-                name:'ask_own_bathroom_availability',
+                name:'ask_bedrooms_available',
                 flow:'landlord', 
                 node:'ask_own_bathroom_availability',
                 catchNode:'none',
