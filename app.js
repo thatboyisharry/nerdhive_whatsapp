@@ -58,7 +58,7 @@ app.post("/webhook",async(req,res)=>{
               console.log("not from client do not process")
               return res.sendStatus(400)
             }
-            console.log(JSON.stringify(req.body, null, 2));          
+            // console.log(JSON.stringify(req.body, null, 2));          
             let phone_number_id = incoming.metadata.phone_number_id;
             let msg =incoming.messages[0];
             let user_num=msg.from;

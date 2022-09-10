@@ -32,6 +32,7 @@ const getBotResponses=async(user,user_response)=>{
     console.log("session");
     console.log(session)
     let current_flow = await getFlow(session.flow);
+    console.log(current_flow)
     let current_node = await getNode(current_flow,session.node);
     console.log("current node")
     console.log(current_node)

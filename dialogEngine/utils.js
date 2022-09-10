@@ -1,12 +1,8 @@
 // const { Flows } = require('../flows');
 const { getProject } = require('../services/apiCalls');
 
-const PROJECT_NAME='kasi rentals'
 
-const Project= getProject(PROJECT_NAME);     
-console.log(Project)
 
-console.log(Project)
  ////////////
  const getTransition=(node,user_response)=>{
   console.log("getting transition...")
@@ -71,6 +67,10 @@ const getFlow=async(flow_name)=>{
     // }catch(error){
     //     console.log(error)
     // }
+  const PROJECT_NAME='kasi rentals'
+
+  const Project=await getProject(PROJECT_NAME);     
+//   console.log(Project)
   
     let Flows=Project.flows
     for(let i = 0 ; i < Flows.length; i++){
