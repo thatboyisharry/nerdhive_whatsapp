@@ -10,6 +10,7 @@ const { getMessages, getTransition, getFlow, getNode } = require('./utils');
 
 
 const getBotResponses=async(user,user_response,Project)=>{
+  console.log(user);
   let project_flows=Project.flows
   let responses;
   
