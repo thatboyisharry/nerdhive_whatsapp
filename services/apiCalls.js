@@ -5,6 +5,21 @@ const Property = require('../models/property.model');
 
 // const Flow = require('../models/flow.model');
 
+const getProject = async(user)=>{
+    try{
+        let property = await Property.findOne({ownerID:user._id})
+        if(property==null){
+            property = await addProperty(user._id);
+            return property;
+        }
+      console.log("found property")
+        return property
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
 const getUser = async(user_number)=>{
     try{
         let user = await User.findOne({phone:user_number})
