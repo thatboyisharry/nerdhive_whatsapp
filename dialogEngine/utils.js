@@ -99,12 +99,8 @@ const getMessages=async(transition,user)=>{
 
 const getResponses=async(flow,next_node,user)=>{
     console.log("inside get responses")
-    let UIs=[];
-    for(let i = 0 ; i<next_node.uis.length;i++){
-        let ui_name=next_node.uis[i].name
-        let ui=await getUI(flow,ui_name)
-        UIs.push(ui);
-    }
+    let UIs=next_node.uis;
+   
 
     
 
