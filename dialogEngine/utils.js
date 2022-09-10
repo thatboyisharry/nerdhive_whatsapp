@@ -1,4 +1,4 @@
-const { Flows } = require('../flows');
+// const { Flows } = require('../flows');
 const { Project } = require('./index');
 
  ////////////
@@ -65,6 +65,7 @@ const getFlow=async(flow_name)=>{
     // }catch(error){
     //     console.log(error)
     // }
+  console.log(Project)
     let Flows=Project.flows
     for(let i = 0 ; i < Flows.length; i++){
         let flow = Flows[i]
