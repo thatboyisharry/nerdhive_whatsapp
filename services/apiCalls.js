@@ -11,6 +11,7 @@ const getProject = async(name)=>{
         let project = await Project.findOne({name:name})
        
       console.log("found project")
+      console.log(project)
         return project
     }catch(error){
         console.log(error);

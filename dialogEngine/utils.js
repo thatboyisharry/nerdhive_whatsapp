@@ -1,5 +1,5 @@
 const { Flows } = require('../flows');
-const { Project } = require('../app');
+const { Project } = require('./index');
 
  ////////////
  const getTransition=(node,user_response)=>{
