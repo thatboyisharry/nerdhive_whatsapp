@@ -2,18 +2,16 @@ const { Flows } = require('../flows');
 
 const User = require('../models/user.model');
 const Property = require('../models/property.model');
+const Project = require('../models/project.model');
 
 // const Flow = require('../models/flow.model');
 
-const getProject = async(user)=>{
+const getProject = async(name)=>{
     try{
-        let property = await Property.findOne({ownerID:user._id})
-        if(property==null){
-            property = await addProperty(user._id);
-            return property;
-        }
-      console.log("found property")
-        return property
+        let project = await Project.findOne({name:name})
+       
+      console.log("found project")
+        return project
     }catch(error){
         console.log(error);
     }
@@ -100,6 +98,7 @@ const getFlow=async(flow_name)=>{
     // }catch(error){
     //     console.log(error)
     // }
+    let Flows=project.flows
     for(let i = 0 ; i < Flows.length; i++){
         let flow = Flows[i]
         if(flow.name===flow_name){
@@ -138,5 +137,6 @@ module.exports = {
     getFlow,
     getUser,
     getProperty,
-    updateUserSession
+    getProject,
+    updateUserSession,
 }

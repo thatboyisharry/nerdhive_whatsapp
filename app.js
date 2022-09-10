@@ -23,7 +23,7 @@ const request = require("request"),
   const path = require('path');
   const { getUserResponse,getBotResponses,sendResponse,updateStatus } = require('./dialogEngine');
  
-  const { getUser } = require('./services/apiCalls');
+  const { getUser ,getProject} = require('./services/apiCalls');
 
 
 // Sets server port and logs message on success
