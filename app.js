@@ -23,7 +23,7 @@ const request = require("request"),
   const path = require('path');
   const { getUserResponse,getBotResponses,sendResponse,updateStatus } = require('./dialogEngine');
  
-  const { getUser } = require('./services/apiCalls');
+  const { getUser,getProject } = require('./services/apiCalls');
 
 
 // Sets server port and logs message on success
@@ -37,8 +37,10 @@ db.once('open',()=>{
             console.log("Connected to the database");
              connected=true
           })
+const PROJECT_NAME='kasi rentals'
 
-             
+const Project= connected?getProject(PROJECT_NAME):null;     
+console.log(Project)
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook",async(req,res)=>{
     const body = req.body
