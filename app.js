@@ -34,10 +34,9 @@ let db=mongoose.connection;
 
 
 db.once('open',()=>{
-            console.log("Connected to the database");
+console.log("Connected to the database");
             
-          })
-
+          
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook",async(req,res)=>{
   
@@ -82,6 +81,7 @@ app.post("/webhook",async(req,res)=>{
             
   }
 
+  })
 })
   
 db.on('error',console.error.bind(console,'Connection to database failed'));

@@ -100,60 +100,29 @@ const getMessages=async(transition,user)=>{
 const getResponses=async(flow,next_node,user)=>{
     console.log("inside get responses")
     let UIs=next_node.uis;
-   
-
-    
 
     let responses=[]
-     console.log("the uis");
+    console.log("the uis");
     console.log(UIs);
-  console.log(UIs[0])
+    console.log(UIs[0])
     for(let i = 0; i<UIs.length; i++){
         let user_interface=UIs[i];
-        let bot_response
+        let bot_response=UIs[i].value;
+        responses.push(bot_response);
         
-        if(user_interface.type==='image'){
-          bot_response={
-            messaging_product: "whatsapp",
-            recipient_type:"individual",
-            to:'', 
-            type:'image'
-            }
-            bot_response.image=user_interface.imageID
-            responses.push(bot_response)
-          
-           
-    
-        }
-
-        if(user_interface.type==='interactive'){
-            bot_response={
-            messaging_product: "whatsapp",
-            recipient_type:"individual",
-            to:'', 
-            type:'interactive'
-            }
-            bot_response.interactive=user_interface.value
-            responses.push(bot_response)
-        }
-    
-        if(user_interface.type==='text'){
-            bot_response=user_interface.value
-            responses.push(bot_response)
-        }
       
-        if(user_interface.type==='template'){
-             bot_response={
-            messaging_product: "whatsapp",
-            recipient_type:"individual",
-            to:'', 
-            type:'template'
-            }
-            bot_response.template=user_interface.value
-            bot_response.template.components[0].parameters[0].text=user.name;
-            responses.push(bot_response)
-            console.log(responses)
-        }
+//         if(user_interface.type==='template'){
+//              bot_response={
+//             messaging_product: "whatsapp",
+//             recipient_type:"individual",
+//             to:'', 
+//             type:'template'
+//             }
+//             bot_response.template=user_interface.value
+//             bot_response.template.components[0].parameters[0].text=user.name;
+//             responses.push(bot_response)
+//             console.log(responses)
+//         }
     
     
     
@@ -166,21 +135,7 @@ const getResponses=async(flow,next_node,user)=>{
 
 }
 
-const getUI=(flow,ui_name)=>{
-    
-    console.log("getting UIs...")
-  console.log(flow.user_interfaces)
-  console.log(ui_name)
-    //set to check for failed action
-    let flow_UIs=flow.user_interfaces;
-    for(let i = 0; i<flow_UIs.length;i++){
-        let ui=flow_UIs[i]
-        if(ui.name===ui_name){
-            return ui;
-        }
-    }
-    
-}
+
 
 
 
@@ -190,7 +145,6 @@ const getUI=(flow,ui_name)=>{
 
 
 module.exports = {
-  getUI,
   getTransition,
   getMessages,
   getNode,
