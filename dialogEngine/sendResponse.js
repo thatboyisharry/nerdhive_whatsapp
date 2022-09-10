@@ -11,6 +11,7 @@ const sendResponse=async(phone_number_id,token,user_num,bot_responses)=>{
           bot_response.to=user_num
           let data =bot_response
           console.log(data)
+          console.log(data.interactive?data.interactive:'')
             try {
                 await axios({
                     method: "POST", // Required, HTTP method, a string, e.g. POST, GET
