@@ -65,19 +65,14 @@ const getFlow=async(flow_name)=>{
     // }catch(error){
     //     console.log(error)
     // }
-    let name = flow_name
-    console.log("getting flow...")
-   
+    let Flows=Project.flows
     for(let i = 0 ; i < Flows.length; i++){
         let flow = Flows[i]
-        if(flow.name===name){
-          console.log("current flow")
-          // console.log(flow)
+        if(flow.name===flow_name){
             return flow
         }
     }
 }
-
 
 const getMessages=async(transition,user)=>{
     let flow = await getFlow(transition.flow);

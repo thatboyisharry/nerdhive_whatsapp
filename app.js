@@ -31,10 +31,16 @@ app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
 let dbRoute=process.env.MONGO_URL;
 mongoose.connect(dbRoute);
 let db=mongoose.connection;
+
+let connected=false
 db.once('open',()=>{
             console.log("Connected to the database");
-             
+             connected=true
           })
+const PROJECT_NAME='KasiRentals'
+
+const Project= connected?getProject(PROJECT_NAME):null;
+console.log(Project);
              
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook",async(req,res)=>{
@@ -111,3 +117,6 @@ app.get("/webhook", (req, res) => {
     }
   }
 });
+module.exports = {
+    Project
+}

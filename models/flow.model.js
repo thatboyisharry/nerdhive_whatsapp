@@ -16,7 +16,7 @@ const {
     AudioSchema,
     DocumentSchema,
     StickerSchema
-} =require('./ui.model');
+} =require('./UI.model');
 
 
 

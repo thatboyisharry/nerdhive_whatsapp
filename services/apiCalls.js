@@ -91,21 +91,7 @@ const updateUserSession = async (user,transition)=>{
 
 
 
-const getFlow=async(flow_name)=>{
-    // try{
-    //     let flow = await Flow.findOne({name:flow_name})
-    //     return flow
-    // }catch(error){
-    //     console.log(error)
-    // }
-    let Flows=project.flows
-    for(let i = 0 ; i < Flows.length; i++){
-        let flow = Flows[i]
-        if(flow.name===flow_name){
-            return flow
-        }
-    }
-}
+
 
 const addUser=async(user_phone)=>{
    let date = new Date()
@@ -134,7 +120,6 @@ const addUser=async(user_phone)=>{
 
 module.exports = {
     addUser,
-    getFlow,
     getUser,
     getProperty,
     getProject,
