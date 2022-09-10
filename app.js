@@ -32,17 +32,15 @@ let dbRoute=process.env.MONGO_URL;
 mongoose.connect(dbRoute);
 let db=mongoose.connection;
 
-let connected=false
+
 db.once('open',()=>{
             console.log("Connected to the database");
-             connected=true
+            
           })
-const PROJECT_NAME='kasi rentals'
 
-const Project= connected?getProject(PROJECT_NAME):null;     
-console.log(Project)
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook",async(req,res)=>{
+  
     const body = req.body
     if(body.object){
       if (
@@ -66,8 +64,7 @@ app.post("/webhook",async(req,res)=>{
             let user_num=msg.from;
             console.log("incoming message")
             console.log(msg)
-            
-            
+           
             try{
               await updateStatus(phone_number_id,token,msg,"read")
               let user = await getUser(user_num);
