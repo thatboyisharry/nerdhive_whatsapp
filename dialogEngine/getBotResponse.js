@@ -9,7 +9,8 @@ const { getMessages, getTransition, getFlow, getNode } = require('./utils');
 ////////////////////////////////////////////////
 
 
-const getBotResponses=async(user,user_response)=>{
+const getBotResponses=async(user,user_response,Project)=>{
+  let project_flows=Project.flows
   let responses;
   
   if(!(user.isOnboarded|user.isOnboarding)){
@@ -31,7 +32,7 @@ const getBotResponses=async(user,user_response)=>{
     let session=user.session;
     console.log("session");
     console.log(session)
-    let current_flow = await getFlow(session.flow);
+    let current_flow = await getFlow(session.flow,project_flows);
     console.log(current_flow)
     let current_node = await getNode(current_flow,session.node);
     console.log("current node")
@@ -63,7 +64,7 @@ const getBotResponses=async(user,user_response)=>{
        console.log("transition is not null")
         
         let updatedUser = await getUser(user.phone);
-        let responses = await getMessages(transition,updatedUser);
+        let responses = await getMessages(transition,updatedUser,project_flows);
         let isUpdated = await updateUserSession(user,transition);
         //isUpdated returns a boolean variable 
         if(isUpdated){

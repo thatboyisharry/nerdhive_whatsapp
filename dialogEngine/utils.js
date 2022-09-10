@@ -61,29 +61,18 @@ const getNode=(flow,node_name)=>{
     }
 }
 
-const getFlow=async(flow_name)=>{
-    // try{
-    //     let flow = await Flow.findOne({name:flow_name})
-    //     return flow
-    // }catch(error){
-    //     console.log(error)
-    // }
-  const PROJECT_NAME='kasi rentals'
-
-  const Project=await getProject(PROJECT_NAME);     
-//   console.log(Project)
-  
-    let Flows=Project.flows
-    for(let i = 0 ; i < Flows.length; i++){
-        let flow = Flows[i]
+const getFlow=async(flow_name,project_flows)=>{
+   
+    for(let i = 0 ; i < project_flows.length; i++){
+        let flow = project_flows[i]
         if(flow.name===flow_name){
             return flow
         }
     }
 }
 
-const getMessages=async(transition,user)=>{
-    let flow = await getFlow(transition.flow);
+const getMessages=async(transition,user,project_flows)=>{
+    let flow = await getFlow(transition.flow,project_flows);
     let node=transition
    console.log(flow)
   console.log("transition")
