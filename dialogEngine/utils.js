@@ -34,13 +34,14 @@ const { getProject } = require('../services/apiCalls');
       return null
     }
    
-    if(node.transitions.length==1){
-      return node.transitions[0]
-    }
   
    if(node.name==='start'){
       console.log("node is start")
       return node
+    }
+   
+   if(node.transitions.length==1){
+      return node.transitions[0]
     }
     return null
 }
@@ -84,8 +85,10 @@ const getFlow=async(flow_name)=>{
 const getMessages=async(transition,user)=>{
     let flow = await getFlow(transition.flow);
     let node=transition
-   
-      node = await getNode(flow,transition.node);
+   console.log(flow)
+  console.log("transition")
+  console.log(transition)
+      node = await getNode(flow,transition.name);
     
     
     console.log("inside get messages")
