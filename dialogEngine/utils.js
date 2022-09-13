@@ -97,6 +97,9 @@ const getResponses=async(flow,next_node,user)=>{
     for(let i = 0; i<UIs.length; i++){
         let user_interface=UIs[i];
         let bot_response=UIs[i].value;
+        if(bot_response.type==='template'){
+          bot_response.template.components[0].parameters[0].text=user.name;
+        }
         responses.push(bot_response);
         
       
