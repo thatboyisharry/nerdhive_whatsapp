@@ -7,23 +7,83 @@
 
 "use strict";
 
-// Access token for your app
-// (copy token from DevX getting started page
-// and save it as environment variable into the .env file)
-const token = process.env.WHATSAPP_TOKEN;
-
-// Imports dependencies and set up http server
+/// Imports dependencies and set up http server
 const request = require("request"),
-  express = require("express"),
-  
-  body_parser = require("body-parser"),
-  axios = require("axios").default,
-  app = express().use(body_parser.json()); // creates express http server
-  const mongoose = require('mongoose');
-  const path = require('path');
-  const { getUserResponse,getBotResponses,sendResponse,updateStatus } = require('./dialogEngine');
- 
-  const { getUser,getProject } = require('./services/apiCalls');
+express = require("express"),
+
+body_parser = require("body-parser"),
+axios = require("axios").default,
+app = express().use(body_parser.json()); // creates express http server
+const mongoose = require('mongoose');
+const path = require('path');
+const session = require('express-session');
+const passport =require('passport');
+const cors=require('cors');
+const cookieParser = require('cookie-parser');
+const routes = require('./routes');
+const User = require('./models/user.model');
+const Bree = require('bree');
+const Cabin = require('cabin');
+const Graceful = require('@ladjs/graceful');
+const { Signale } = require('signale');
+
+// initialize cabin
+const cabin = new Cabin({
+  axe: {
+    logger: new Signale()
+  }
+});
+
+const bree = new Bree({
+  logger: cabin,
+  jobs: [
+    {
+      name:'morning-lesson-remainder',
+      interval: 'at 08:00 am'
+    },
+    {
+      name:'pre-lesson',
+      cron: '0 * * * *'
+    },
+    {
+      name:'post-lesson',
+      cron: '0 * * * *'
+    },
+    {
+      name:'reset-sessions',
+      cron: '0 0,6 * * *'
+    },
+    {
+      name:'send-job-alerts',
+      cron: '30 10,13,18 * * *'
+    }
+  ]
+});
+
+// handle graceful reloads, pm2 support, and events like SIGHUP, SIGINT, etc.
+const graceful = new Graceful({ brees: [bree] });
+graceful.listen();
+
+// start all jobs (this is the equivalent of reloading a crontab):
+// bree.start();
+//Basic configuration
+const oneDay=1000*60*60*24;
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname,'/public')));
+app.use(session({
+  secret:"cats",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge:oneDay }
+}));
+app.use(cookieParser());
+app.use(passport.initialize()); //authentication related
+app.use(passport.session());// authentication related
+
+
+
 
 
 // Sets server port and logs message on success
@@ -34,85 +94,10 @@ let db=mongoose.connection;
 
 
 db.once('open',async()=>{
-console.log("Connected to the database");
-const PROJECT_NAME='kasi rentals'
+  console.log("Connected to the database");
+  routes(app,User);
 
-const Project=await getProject(PROJECT_NAME);     
-//   console.log(Project)           
-          
-// Accepts POST requests at /webhook endpoint
-app.post("/webhook",async(req,res)=>{
-  
-    const body = req.body
-    if(body.object){
-      if (
-        req.body.entry &&
-        req.body.entry[0].changes &&
-        req.body.entry[0].changes[0] &&
-        req.body.entry[0].changes[0].value.messages &&
-        req.body.entry[0].changes[0].value.messages[0]
-      ){
-
-            let post = body.entry[0].changes[0]
-            let incoming=post.value;
-            if(post.field !== 'messages'){
-            // not from the messages webhook so dont process
-              console.log("not from client do not process")
-              return res.sendStatus(400)
-            }
-            // console.log(JSON.stringify(req.body, null, 2));          
-            let phone_number_id = incoming.metadata.phone_number_id;
-            let msg =incoming.messages[0];
-            let user_num=msg.from;
-            console.log("incoming message")
-            console.log(msg)
-           
-            try{
-              await updateStatus(phone_number_id,token,msg,"read")
-              let user = await getUser(user_num);
-              let user_response=await getUserResponse(msg);
-              let bot_responses=await getBotResponses(user,user_response,Project)
-              sendResponse(phone_number_id,token,user_num,bot_responses)
-            }catch(error){
-              console.log(error);
-
-            }
-
-        }
-        
-      res.sendStatus(200);
-            
-  }
-
-  })
 })
   
 db.on('error',console.error.bind(console,'Connection to database failed'));
 
-// Accepts GET requests at the /webhook endpoint. You need this URL to setup webhook initially.
-// info on verification request payload: https://developers.facebook.com/docs/graph-api/webhooks/getting-started#verification-requests 
-app.get("/webhook", (req, res) => {
-  /**
-   * UPDATE YOUR VERIFY TOKEN
-   *This will be the Verify Token value when you set up webhook
-  **/
-  const verify_token = process.env.VERIFY_TOKEN;
-
-  // Parse params from the webhook verification request
-  let mode = req.query["hub.mode"];
-  let token = req.query["hub.verify_token"];
-  let challenge = req.query["hub.challenge"];
-
-  // Check if a token and mode were sent
-  if (mode && token) {
-    // Check the mode and token sent are correct
-    if (mode === "subscribe" && token === verify_token) {
-      // Respond with 200 OK and challenge token from the request
-      console.log("WEBHOOK_VERIFIED");
-      res.status(200).send(challenge);
-    } else {
-      // Responds with '403 Forbidden' if verify tokens do not match
-      res.sendStatus(403);
-    }
-  }
-});

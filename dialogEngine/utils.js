@@ -1,23 +1,21 @@
 // const { Flows } = require('../flows');
-const { getProject } = require('../services/apiCalls');
+const { templateActionsHandler } = require('../messages/templates');
 
 
 
  ////////////
- const getTransition=(node,user_response)=>{
+ const getTransition=(node,trigger)=>{
   console.log("getting transition...")
-  console.log(user_response)
-  let response
-    if(user_response){
-        let response =user_response
+  console.log(trigger)
+    if(trigger){
         for(let i = 0; i< node.transitions.length;i++){
           let transition = node.transitions[i];
-          if(transition.name==response){
+          if(transition.name==trigger){
             console.log("transition")
             console.log(transition)
               return transition
           }
-          if(transition.trigger&&transition.trigger===response){
+          if(transition.trigger&&transition.trigger===trigger){
             console.log(transition)
             return transition
           }
@@ -89,7 +87,7 @@ const getMessages=async(transition,user,project_flows)=>{
 const getResponses=async(flow,next_node,user)=>{
     console.log("inside get responses")
     let UIs=next_node.uis;
-
+    
     let responses=[]
     console.log("the uis");
     console.log(UIs);
@@ -98,25 +96,9 @@ const getResponses=async(flow,next_node,user)=>{
         let user_interface=UIs[i];
         let bot_response=UIs[i].value;
         if(bot_response.type==='template'){
-          bot_response.template.components[0].parameters[0].text=user.name;
+          bot_response=await addParameters(bot_response,user)
         }
         responses.push(bot_response);
-        
-      
-//         if(user_interface.type==='template'){
-//              bot_response={
-//             messaging_product: "whatsapp",
-//             recipient_type:"individual",
-//             to:'', 
-//             type:'template'
-//             }
-//             bot_response.template=user_interface.value
-//             bot_response.template.components[0].parameters[0].text=user.name;
-//             responses.push(bot_response)
-//             console.log(responses)
-//         }
-    
-    
     
        
  
@@ -128,7 +110,10 @@ const getResponses=async(flow,next_node,user)=>{
 }
 
 
-
+const addParameters=async(bot_response,user)=>{
+  response= await templateActionsHandler(bot_response,user)
+  return response
+}
 
 
 

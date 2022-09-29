@@ -1,25 +1,35 @@
 {
-  "name": "whatsapp-cloudapi-quick-start",
+  "name": "nerdhive-backend",
   "version": "1.0.0",
   "description": "An example webhook for WhatsApp Cloud API quick start tutorial.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
-  "author": "WhatsApp",
+  "author": "Harold Muchengeta",
   "license": "ISC",
   "dependencies": {
+    "@ladjs/graceful": "^3.0.2",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
-    "express": "^4.18.1",
-    "request": "^2.88.2",
+    "bree": "^9.1.2",
+    "cabin": "^9.1.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
+    "emoji-js": "^3.7.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
     "mongoose": "^6.4.7",
     "nodemon": "^2.0.19",
-    "emoji-js": "^3.7.0"
-  },
-  "engines": {
-    "node": "12.x"
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-token": "^1.0.1",
+    "request": "^2.88.2",
+    "signale": "^1.4.0",
+    "uuid": "^9.0.0"
   }
 }

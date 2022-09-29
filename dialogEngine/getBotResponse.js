@@ -39,19 +39,21 @@ const getBotResponses=async(user,user_response,Project)=>{
     console.log("current node")
     console.log(current_node)
     //get the next transition
-    let executed = true;
+    let trigger = user_response;
     let transition;
     
     if(current_node.sticky){
-      transition = await getTransition(current_node,user_response,user); 
-      if(transition==null&&session.num!=0){
-        executed = await actionsHandler(current_node,user_response,user)
-        }
-    }else{
-      if(session.num!==0){
-        executed = await actionsHandler(current_node,user_response,user)
+      transition = await getTransition(current_node,trigger); 
+      if(transition==null){
+          if(current_node.actions.length>0&&session.num!==0){
+            trigger = await actionsHandler(current_node,user_response,user)
+          }
       }
-      transition = await getTransition(current_node,user_response,user); 
+    }else{
+      if(current_node.actions.length>0&&session.num!==0){
+        trigger = await actionsHandler(current_node,user_response,user)
+      }
+      transition = await getTransition(current_node,trigger); 
     }
     
     
@@ -60,7 +62,7 @@ const getBotResponses=async(user,user_response,Project)=>{
       transition = current_node;
     }
 
-    if(executed&&transition!==null){
+    if(transition!==null){
          
        console.log("transition is not null")
         

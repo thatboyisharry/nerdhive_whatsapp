@@ -2,32 +2,34 @@ const mongoose = require("mongoose");
 
 
 const Schema = mongoose.Schema;
-
-const FlowSchema = new Schema(
-    {
-        flow:{
-            type:String,
-            default:'onboarding',
-            required:true,
-        },
-        node:{
-            type:String,
-            default:'start'  
-            
-        },
-        lastUpdated:{
-            type:Date
-        },
-        num:{
-          type:Number,
-          default:0
-        }
-    }
+const sessionSchema = new Schema(
+  {
+    flow:{type:String},
+    node:{type:String},
+    num:{type:String},
+    lastUpdated:{type:Date},
+    chat:{
+      active:{type:Boolean,default:false},
+      participant:{type:String}
+    },
+    data:{}
+  }
 )
 
 const UserSchema = new Schema(
   {
-    name: {
+    id:{
+      type:String,
+      required:true,
+    },
+    username: {
+      type: String,
+      default:null,
+      min: 3,
+      max: 20,
+      unique: true,
+    },
+    userCode:{
       type: String,
       default:null,
       min: 3,
@@ -54,18 +56,24 @@ const UserSchema = new Schema(
       default: "",
     },
 
-    isLandlord: {
+    isParent: {
         type: Boolean,
         default: false,
       },
 
-    isTenant: {
+    isLearner: {
         type: Boolean,
         default: false,
     },
-    grade:{
-      type:String,
-      default: null
+    
+    isTutor: {
+      type: Boolean,
+      default: false,
+    },
+    
+    isCoach: {
+      type: Boolean,
+      default: false,
     },
 
     isAdmin: {
@@ -80,18 +88,9 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    desc: {
-      type: String,
-      max: 50,
-    },
     session:{
-        type: FlowSchema,
-    },
-    city: {
-      type: String,
-      max: 50,
-    },
-    
+        type: sessionSchema,
+    }  
   },
   { timestamps: true }
 );
