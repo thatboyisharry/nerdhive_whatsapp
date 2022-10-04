@@ -42,6 +42,8 @@ async function main(){
         if(currentHour-lastUpdatedHour>1){
             try {
                 user.session.isActive=false
+                user.session.chat.active=false
+                user.session.chat.participant=null;
                 await updateUser(user);
             } catch (error) {
                 console.log(error)

@@ -71,20 +71,20 @@ const getFlow=async(flow_name,project_flows)=>{
 
 const getMessages=async(transition,user,project_flows)=>{
     let flow = await getFlow(transition.flow,project_flows);
-    let node=transition
-   console.log(flow)
-  console.log("transition")
-  console.log(transition)
-      node = await getNode(flow,transition.name);
+    let node= node = await getNode(flow,transition.name);
+  
+    console.log("transition flow")
+    console.log(flow)
+     
     
     
     console.log("inside get messages")
-    let messages = await getResponses(flow,node,user)
+    let messages = await getResponses(node,user)
 
     return messages
 }
 
-const getResponses=async(flow,next_node,user)=>{
+const getResponses=async(next_node,user)=>{
     console.log("inside get responses")
     let UIs=next_node.uis;
     
@@ -93,15 +93,16 @@ const getResponses=async(flow,next_node,user)=>{
     console.log(UIs);
     console.log(UIs[0])
     for(let i = 0; i<UIs.length; i++){
-        let user_interface=UIs[i];
         let bot_response=UIs[i].value;
         if(bot_response.type==='template'){
           bot_response=await addParameters(bot_response,user)
         }
-        responses.push(bot_response);
-    
-       
- 
+        if(bot_response.isArray){
+          responses = responses.concat(bot_response);
+        }else{
+          responses.push(bot_response);
+        }
+        
     }
 
 

@@ -9,11 +9,10 @@ const { getMessages, getTransition, getFlow, getNode } = require('./utils');
 ////////////////////////////////////////////////
 
 
-const getBotResponses=async(user,user_response,Project)=>{
+const getBotResponses=async(user,user_response,project_flows)=>{
   console.log(user);
-  let project_flows=Project.flows
-  let responses;
   
+  let responses;
   if(!(user.isOnboarded|user.isOnboarding)){
       console.log("current user")
       console.log(user)

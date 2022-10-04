@@ -1,3 +1,34 @@
+
+
+const mene=[
+    {
+        name:'start',
+        flow:'learner_menu',
+        node:'start',
+        actions:[{name:'startChat',trigger:'speak_to_coach',flow:'startChat',onSuccess:'',onFailure:''}],
+        uis:[
+            {
+                type:'interactive',
+                name:'learner_menu'
+            },
+        ],
+        transitions:[
+            {
+                name:'ask_city',
+                flow:'landlord', 
+                node:'ask_city',
+                catchNode:'none',
+                trigger:""
+            }
+        ],
+        catch:"",
+        sticky:false
+
+    
+    },
+]
+
+
 const landlordNodes=[
     {
         name:'ask_province',

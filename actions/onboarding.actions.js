@@ -13,7 +13,7 @@ const onboardingActions=async(action,user_response,user)=>{
     action_status = await isLandlord(user);
   }
   
-  if(action=='isTenant'){
+  if(action=='isTenant'){r
     action_status = await isTenant(user);
   }
   if(action==="doneOnboarding"){

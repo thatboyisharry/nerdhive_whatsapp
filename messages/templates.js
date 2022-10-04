@@ -1,4 +1,5 @@
-const {getProperty} = require("../services/apiCalls");
+const {getProperty, getTimetable, getLesson} = require("../services/apiCalls");
+const { getWeelkyAppointments } = require("./utils");
 
 // const sendTemplateMessage=async(template,data,receiver)=>{
 
@@ -8,12 +9,47 @@ const templateActionsHandler=async(message,user)=>{
     const { template } = message;
     let filledTemplate
 
+    if(template.name==='upcoming_lessons'){
+      let messages=[]
+      //get learner timetable
+      let timetable = await getTimetable(user.id);
+      //filter from current day to sunday
+      let appointments = getWeelkyAppointments(timetable)
+      //get lessons from all appointments from current day to sunday
+      let lessons=[]
+      for (let j = 0 ; j < appointments.length; j++){
+        let appointment=appointments[j]
+        let lessonId = appointment.lessonId;
+        let lesson = await getLesson(lessonId);
+        lessons.push(lesson)
+    }
+      //fill templates with lesson details and return an array of templates
+      for(let i = 0 ; i < lessons.length; i++){
+        filledTemplate = await  upcomingLessonsActions(template,lessons[i])
+        message.template=filledTemplate
+        messages.push(message);
+      }
+
+      return messages
+
+    }
+
     // if(template.name==='landlord_or_renter'){
     //     filledTemplate = await landlordOrRenter_Actions(template,user)
     // }
     
     message.template=filledTemplate
     return message.template=filledTemplate
+
+}
+
+const upcomingLessonsActions=async(template,lesson)=>{
+
+    template.components[0].parameters[0].text=lesson.topic;
+    template.components[0].parameters[1].text=lesson.day;
+    template.components[0].parameters[2].text=lesson.time;
+
+  return template
 
 }
 

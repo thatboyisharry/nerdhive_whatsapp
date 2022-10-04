@@ -13,6 +13,7 @@ router.post("/",async(req,res)=>{
     const PROJECT_NAME='kasi rentals'
 
     const Project=await getProject(PROJECT_NAME);
+    const project_flows=Project.flows
     const body = req.body
     if(body.object){
       if (
@@ -40,7 +41,7 @@ router.post("/",async(req,res)=>{
             try{
               await updateStatus(phone_number_id,token,msg,"read")
               let user = await getUser(user_num);
-              await NerdHiveDialogEngine(msg,user)
+              await NerdHiveDialogEngine(msg,user,project_flows)
             }catch(error){
               console.log(error);
 
