@@ -1,7 +1,16 @@
 import { v1 as uuidv1 } from 'uuid';
-const {updateUser,updateTimetable,getTimetable} = require("../services/apiCalls");
+const {updateUser,updateTimetable,getTimetable, getLesson} = require("../services/apiCalls");
 ///create updateTimetable
 const scheduleLessonFlowActions= async(action,user_response,user)=>{
+
+    if(action.name==='start'){
+        let success= await selectLesson(user,user_response);
+        if(success){
+            return action.onSuccess
+        }else{
+            return action.onFailure
+        }
+    }
 
     if(action.name==='saveDay'){
         let success= await saveDay(user,user_response);
@@ -32,6 +41,20 @@ const scheduleLessonFlowActions= async(action,user_response,user)=>{
 }
 
 
+
+/////////////////////////////////////
+
+
+const selectLesson=async(user,code)=>{
+    
+    let lesson = await getLesson(code);
+    user.session.data.lesson=lesson
+
+    let res = await updateUser(user);
+    
+    return res
+
+}
 
 
 /////////////////////////////////////

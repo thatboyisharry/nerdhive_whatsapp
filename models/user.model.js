@@ -8,6 +8,9 @@ const sessionSchema = new Schema(
     node:{type:String},
     num:{type:String},
     lastUpdated:{type:Date},
+    prevFlow:{type:String},
+    prevNode:{type:String},
+    isActive:{type:Boolean,default:false},
     chat:{
       active:{type:Boolean,default:false},
       participant:{type:String}

@@ -5,7 +5,10 @@ const mene=[
         name:'start',
         flow:'learner_menu',
         node:'start',
-        actions:[{name:'startChat',trigger:'speak_to_coach',flow:'startChat',onSuccess:'',onFailure:''}],
+        actions:[{name:'startChat',trigger:'talk_to_coach',flow:'startChat',onSuccess:'',onFailure:''},
+                {name:'getNextLesson',trigger:'next_lesson',flow:'nextLesson',onSuccess:'',onFailure:''},
+                {name:'getUpcomingLessons',trigger:'upcoming_lessons',flow:'upcomingLessons',onSuccess:'',onFailure:''}
+            ],
         uis:[
             {
                 type:'interactive',

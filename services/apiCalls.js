@@ -234,8 +234,12 @@ const getLesson = async(lessonId)=>{
     try{
         let lesson = await Lesson.findOne({id:lessonId})
         if(lesson==null){
-            return lesson
+            let lessonCode=lessonId
+            lesson = await lesson.findOne({lessonCode:lessonCode})
+            //change phone to some code
         }
+
+        return lesson
                
     }catch(error){
         console.log(error);
@@ -244,7 +248,7 @@ const getLesson = async(lessonId)=>{
 const updateLesson = async(lesson)=>{
     try{
         let updatedLesson= await Lesson.findByIdAndUpdate(lesson._id,lesson)
-        if(updatedLesson==null){
+        if(updatedLesson!==null){
             console.log("updated Lesson")
             console.log(updateLesson)
             return updatedLesson
@@ -388,22 +392,20 @@ const getAllUsers = async()=>{
 
 const updateUserSession = async (user,transition)=>{
   let date = new Date()
-  let sessionNum = user.session.num +1;
+  let session=user.session;
+  session.prevFlow = session.flow;
+  session.prevNode = session.node;
+  session.flow = transition.flow;
+  session.node = transition.node;
+  session.num = session.num + 1;
+  session.lastUpdated = date;
   try{
-    let session = {
-      session:{
-        flow:transition.flow,
-        node:transition.name,
-        lastUpdated:date,
-        num:sessionNum
-      }
-      
-    }
+    
     console.log(session)
-     let updatedUser= await User.findByIdAndUpdate(user._id,session)
-        console.log("updated user")
-      console.log(updatedUser.session)
-     return true;
+    let updatedUser= await User.findByIdAndUpdate(user._id,session)
+    console.log("updated user")
+    console.log(updatedUser.session)
+    return true;
   
     
   }catch(error){

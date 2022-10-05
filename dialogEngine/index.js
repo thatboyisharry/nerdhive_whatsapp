@@ -3,6 +3,7 @@ const {getUserResponse} = require("./getUserResponse");
 const {getBotResponses} = require("./getBotResponse");
 const { updateUser, getUser } = require("../services/apiCalls");
 const { startChat, endChat } = require("./startChat");
+const { goToPrevOrMenu } = require("./nerdHiveEngineSerivices");
 
 const token = process.env.WHATSAPP_TOKEN;
 const phone_number_id = process.env.phone_number_id;
@@ -26,8 +27,16 @@ const NerdHiveDialogEngine=async(msg,user,project_flows)=>{
     if(user.session.isActive){
       try{
         let user_response= await getUserResponse(msg);
-        let bot_response = await getBotResponses(user,user_response,project_flows);
+        let go_to_prev_or_menu = await goToPrevOrMenu(user,user_response)
+        let bot_response;
+        if(go_to_prev_or_menu){
+          let updatedUser = await getUser(user.phone);
+          bot_response = await getBotResponses(updatedUser,user_text,project_flows);
+        }else{
+          bot_response = await getBotResponses(user,user_response,project_flows); 
+        }
         await sendResponse(phone_number_id,token,user.phone,bot_response)
+       
       }catch(error){
         console.log(error)
       }

@@ -21,6 +21,7 @@ const objectiveSchema = new Schema({
 
 const lessonSchema = new Schema({
     id:{type:String,required:true},
+    lessonCode:{type:String,required:true},
     learnerId:{type:String,required:true},
     tutorId:{type:String},
     appointmentId:{type:String},
