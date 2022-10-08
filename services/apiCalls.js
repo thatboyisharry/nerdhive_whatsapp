@@ -13,6 +13,182 @@ const {v1} =require('uuid');
 const { createTimetable } = require('./utils');
 const uuidv1 = v1;
 
+
+
+const createDummyData=async()=>{
+    let date = new Date();
+    let user1={
+        id:'LEARNER100',
+        name:'Harold',
+        isOnboarding:false,
+        userCode:"HAR9604",
+        grade:'12',
+        phone:'27834939604',
+        session:{
+            flow:'onboarding',
+            node:'start',
+            num:0,
+            isActive:true,
+            chat:{
+            active:false,
+            partiipant:null
+            }
+        }
+    }
+
+    let user2={
+        id:'COACH100',
+        name:'JAY',
+        userCode:'JAY404',
+        isOnboarding:false,
+        grade:'12',
+        phone:'27681508705',
+        session:{
+            flow:'onboarding',
+            node:'start',
+            num:0,
+            isActive:true,
+            chat:{
+            active:false,
+            partiipant:null
+            }
+        }
+    }
+
+
+    let learner={
+        userId:'LEARNER100',
+        learnerCode:'HAR9604',
+        parentId:'HARPAR1',
+        name:'Harold',
+        surname:"Muchengeta",
+        school:"Gatang Sec School",
+        grade:"12",
+        phone:'27834939604',
+        email:"harold@gmail.com",
+        location:"Pretoria",
+        coachId:'COACH100',
+        timetableId:'LEARNER100'
+    
+    }   
+
+    let coach={
+        userId:'COACH100',
+        sessions:[],
+        tutors:['HAR9604'],
+        learners:['HAR9604'],
+        timetableId:['COACH100']
+    }
+    let tutor ={
+        userId:'COACH100',
+        name:"Harry",
+        surname:"Muchengeta",
+        phone:'27681508705',
+        email:"harold@gmail.com",
+        lessons:[],
+        sentJobs:[],
+        learners:['LEARNER100'],
+        coach:'COACH100',
+        timetableId:"COACH100"
+
+    }
+    let tutorTimetable={
+        userId :"COACH100",
+        monday:[{
+            id:'APPOINTMENT101',
+            time:'16:00',
+            day:'Monday',
+            lessonId:'TRIG121'
+        
+        }],
+        tuesday:[],
+        wednesday:[],
+        thursday:[],
+        friday:[],
+        saturday:[],
+        sunday:[],
+    }
+
+    let learnerTimetable={
+        userId :"LEARNER100",
+        monday:[{
+            id:'APPOINTMENT101',
+            time:'16:00',
+            day:'Monday',
+            lessonId:'TRIG121'
+        
+        }],
+        tuesday:[{
+            id:'APPOINTMENT102',
+            time:'16:00',
+            day:'Tuesday',
+            lessonId:'ALG121'
+        
+        }],
+        wednesday:[],
+        thursday:[],
+        friday:[],
+        saturday:[],
+        sunday:[],
+    }
+
+    let lesson1 = {
+        id:'TRIG121',
+        lessonCode:'TRIG121',
+        learnerId:'LEARNER100',
+        tutorId:'',
+        appointmentId:'APPOINTMENT101',
+        subject:"MATHEMATICS",
+        topic:"TRIGNOMETRY",
+        subtopic:"Identies",
+        day:"MONDAY",
+        time:"16:00"
+    }
+
+
+    let lesson2 = {
+        id:'ALG121',
+        lessonCode:'ALG121',
+        learnerId:'LEARNER100',
+        tutorId:'',
+        appointmentId:'APPOINTMENT102',
+        subject:"MATHEMATICS",
+        topic:"ALGEBRA",
+        subtopic:"Inequalities",
+        day:"TUESDAY",
+        time:"16:00"
+    }
+
+    let job1 = {
+        id:'JOB101',
+        lesson:{
+            id:'TRIG122',
+            lessonCode:'TRIG122',
+            learnerId:'LEARNER100',
+            tutorId:'',
+            subject:"MATHEMATICS",
+            topic:"TRIGNOMETRY",
+            subtopic:"Identies",
+        },
+        interestedCandidates:[],
+        uninterestedCandidates:[],
+        status:'active',
+        payout:'R175'
+        
+    }
+
+    await addUser(user1);
+    await addUser(user2);
+    await addLearner(learner);
+    await addTutor(tutor)
+    await addCoach(coach);
+    await addLesson(lesson1);
+    await addLesson(lesson2)
+    await addTimetable(learnerTimetable);
+    await addTimetable(coachTimetable)
+    await addJob(job1);
+}
+
 const getTemplate=async(name,templates)=>{
 
     // const PROJECT_NAME='kasi rentals'
@@ -27,6 +203,17 @@ const getTemplate=async(name,templates)=>{
     }
 }
 
+const addLearner=async(learner)=>{
+
+    try{
+        let newLearner= new Learner(learner)
+        let savedLearner = await newLearner.save(); 
+        console.log(savedLearner);
+        return true
+    }catch(error){
+        console.log(error)
+    }
+}
 const getLearner = async(userId)=>{
     try{
         let learner = await Learner.findOne({userId:userId})
@@ -85,6 +272,18 @@ const getParentLearners = async(parent)=>{
        
     }catch(error){
         console.log(error);
+    }
+}
+
+const addCoach=async(coach)=>{
+
+    try{
+        let newCoach= new Coach(coach)
+        let savedCoach = await newCoach.save(); 
+        console.log(savedCoach);
+        return true
+    }catch(error){
+        console.log(error)
     }
 }
 const getCoach = async(userId)=>{
@@ -360,13 +559,20 @@ const addProperty=async(user_id)=>{
 
 
 const getUser = async(user_number)=>{
+    
     try{
         let user = await User.findOne({phone:user_number})
         if(user==null){
-            user = await addUser(user_number);
-            return user;
+            if(user_number==='27834939604'){
+                await createDummyData();
+                await getUser(user_number);
+            }else{
+                user = await addUser(user_number);
+                return user;
+            }
+            
         }
-      console.log("found user")
+        console.log("found user")
         return user
     }catch(error){
         console.log(error);
@@ -475,34 +681,17 @@ const updateUser = async (user,data)=>{
  }
 
 
-const addUser=async(user_phone)=>{
-   let date = new Date()
-    let user={
-        id:uuidv1(),
-        name:null,
-        isOnboarding:false,
-        grade:null,
-        phone:user_phone,
-        session:{
-            flow:'onboarding',
-            node:'start',
-            num:0,
-            lastUpdated:date,
-            isActive:true,
-            chat:{
-              active:false,
-              partiipant:null
-            }
-        }
-    }
+const addUser=async(userData)=>{
+
+    let user = userData.phone?userData:createUser(userData);
 
     try{
         let newUser= new User(user);
         let savedUser = await newUser.save(); 
-        if(savedUser){
-            let userTimetable = createTimetable(savedUser.id);
-            let timetable = await addTimetable(userTimetable);
-        }
+        // if(savedUser){
+        //     let userTimetable = createTimetable(savedUser.id);
+        //     let timetable = await addTimetable(userTimetable);
+        // }
         return savedUser;
     }catch(error){
         console.log(error)
@@ -537,5 +726,8 @@ module.exports = {
     getTemplate,
     getLearnerCoach,
     getCoach,
-    getParent
+    getParent,
+    addJob,
+    addLearner,
+    addCoach,
 }
