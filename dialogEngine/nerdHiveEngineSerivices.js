@@ -1,4 +1,4 @@
-const { updateUser } = require("../services/apiCalls");
+const { updateUser} = require("../services/apiCalls");
 
 
 
@@ -7,34 +7,42 @@ const goToPrevOrMenu=async(user,user_response)=>{
     let response = user_response.toLowerCase();
     let session=user.session;
     if(response==='back'){
-        session.flow = session.prevFlow;
-        session.node = session.prevNode;
+      
+        session.flow=session.prevFlow
+        session.node=session.prevNode
+        session.num=0
+        user.session=session
         await updateUser(user);
         return true
     }
 
     if(response==='menu'||response==='main menu'){
+        let flow='';
+        let node='';
         if(user.isLearner){
-            session.flow = 'learner_menu';
-            session.node = 'start';
+            flow = 'learner_menu';
+            node = 'start';
         }
         if(user.isTutor){
-            session.flow = 'tutor_menu';
-            session.node = 'start';
+            flow = 'tutor_menu';
+            node = 'start';
         }
         if(user.isCoach){
-            session.flow = 'coach_menu';
-            session.node = 'start';
+            flow = 'coach_menu';
+            node = 'start';
         }
         if(user.isParent){
-            session.flow = 'parent_menu';
-            session.node = 'start';
+            flow = 'parent_menu';
+            node = 'start';
         }
         if(user.isAdmin){
-            session.flow = 'admin_menu';
-            session.node = 'start';
+            flow = 'admin_menu';
+            node = 'start';
         }
-        await updateUser(user);
+        
+        user.session.flow=flow
+        user.session.node=node
+        await updateUser(user)
         return true
     }
 

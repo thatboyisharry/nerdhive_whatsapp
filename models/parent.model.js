@@ -12,5 +12,7 @@ const ParentSchema = new Schema({
 })
 
 
-let Parent = mongoose.model('Parent',ParentSchema);
-exports.Parent = Parent
+// let Parent = mongoose.model('Parent',ParentSchema);
+// exports.Parent = Parent
+
+module.exports= ParentSchema

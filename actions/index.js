@@ -1,4 +1,5 @@
 const { createLessonFlowActions } = require('./createLesson.actions');
+const { onboardingActions } = require('./onboarding.actions');
 const { postLessonFlowActions } = require('./postLesson.actions');
 const { scheduleLessonFlowActions } = require('./scheduleLesson.actions');
 const { startChatFlowActions } = require('./startChat.actions');
@@ -38,6 +39,11 @@ const actionsHandler= async(node,user_response,user)=>{
     if(node.flow==='startChat'){
       console.log("startChat flow...")
       trigger = await startChatFlowActions(action,user_response,user);
+    }
+
+    if(node.flow==='onboarding'){
+      console.log("onboarding flow...")
+      trigger = await onboardingActions(action,user_response,user);
     }
    
     return trigger

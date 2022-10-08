@@ -1,4 +1,5 @@
-import { v1 as uuidv1 } from 'uuid';
+const {v1} =require('uuid');
+const uuidv1 = v1;
 const {updateUser,updateTimetable,getTimetable, getLesson} = require("../services/apiCalls");
 ///create updateTimetable
 const scheduleLessonFlowActions= async(action,user_response,user)=>{

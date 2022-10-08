@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { lessonSchema } = require('./lesson.model');
+const  LessonSchema  = require('./lesson.model');
 
 
 
@@ -11,7 +11,7 @@ const objectiveSchema = new Schema({
 
 const JobSchema = new Schema({
     id:{type:String,required:true},
-    lesson:{type:lessonSchema},
+    lesson:{type:LessonSchema},
     interestedCandidates:{type:[String]},
     uninterestedCandidates:{type:[String]},
     status:{type:String,required:true,default:'active'},
@@ -20,4 +20,5 @@ const JobSchema = new Schema({
 })
 
 
-exports.Job = mongoose.models.Job || mongoose.model('Job',JobSchema);
+// exports.Job = mongoose.models.Job || mongoose.model('Job',JobSchema);
+module.exports= JobSchema

@@ -1,15 +1,17 @@
-
-const User = require('../models/user.model');
-const Learner = require('../models/learner.model');
-const Lesson = require('../models/lesson.model');
-const Tutor = require('../models/tutor.model');
-const Coach = require('../models/coach.model');
-const Parent = require('../models/learner.model');
-const Timetable = require('../models/timetable.model');
-const Project = require('../models/project.model');
-const { Job } = require('../models/job.model');
-
-
+const dataConnection = require('../models/connections/data');
+const projectConnection = require('../models/connections/project');
+const Project=projectConnection.models.Project;
+const User=dataConnection.models.User;
+const Learner=dataConnection.models.Learner;
+const Lesson=dataConnection.models.Lesson;
+const Tutor=dataConnection.models.Tutor;
+const Coach=dataConnection.models.Coach;
+const Parent=dataConnection.models.Parent;
+const Timetable=dataConnection.models.Timetable;
+const Job=dataConnection.models.Job;
+const {v1} =require('uuid');
+const { createTimetable } = require('./utils');
+const uuidv1 = v1;
 
 const getTemplate=async(name,templates)=>{
 
@@ -176,7 +178,7 @@ const getParent = async(userId)=>{
 const getTimetable = async(userId)=>{
     try{
         let timetable = await Timetable.findOne({userId:userId})
-        if(timetable==null){
+        if(timetable!==null){
             console.log("found timetable")
             return timetable
         }
@@ -189,7 +191,7 @@ const getTimetable = async(userId)=>{
 const getTimetables = async(userId)=>{
     try{
         let timetables = await Timetable.find({})
-        if(timetables==null){
+        if(timetables!==null){
             console.log("found timetables")
             return timetables
         }
@@ -202,7 +204,7 @@ const getTimetables = async(userId)=>{
 const updateTimetable = async(timetable)=>{
     try{
         let updatedTimetable= await Timetable.findByIdAndUpdate(timetable._id,timetable)
-        if(updatedTimetable==null){
+        if(updatedTimetable!==null){
             console.log("found timetable")
             return timetable
         }
@@ -342,15 +344,18 @@ const addProperty=async(user_id)=>{
 
 
  const getProject = async(name)=>{
-    try{
-        let project = await Project.findOne({name:name})
-       
+   
+      try{
+      let project = await Project.findOne({name:name})
+
       console.log("found project")
       console.log(project)
         return project
-    }catch(error){
-        console.log(error);
-    }
+      }catch(error){
+          console.log(error);
+      }
+
+   
 }
 
 
@@ -391,44 +396,60 @@ const getAllUsers = async()=>{
 }
 
 const updateUserSession = async (user,transition)=>{
-  let date = new Date()
-  let session=user.session;
-  session.prevFlow = session.flow;
-  session.prevNode = session.node;
-  session.flow = transition.flow;
-  session.node = transition.node;
-  session.num = session.num + 1;
-  session.lastUpdated = date;
-  try{
-    
-    console.log(session)
-    let updatedUser= await User.findByIdAndUpdate(user._id,session)
-    console.log("updated user")
-    console.log(updatedUser.session)
-    return true;
-  
-    
-  }catch(error){
-    console.log(error);
-    return false;
-    
-  }
-    
-}
-
-const updateUser = async (user)=>{
-  
-    if(user.session.num){
-        let sessionNum = user.session.num +1;
-       user.session.num =sessionNum
-    }else{
-        user.session.num = 0;
+    let date = new Date()
+    let session=user.session;
+    session.flow=transition.flow
+    session.node=transition.node
+    session.num=session.num + 1;
+    session.lastUpdated=date;
+   
+    try{
+      
+      console.log(data)
+      let updatedUser= await User.findByIdAndUpdate(user._id,session)
+      console.log("updated user session")
+      console.log(updatedUser.session)
+      return true;
+         
+    }catch(error){
+      console.log(error);
+      return false;
+      
     }
     
+}
+const updateUserInfo = async(user,data)=>{
     try{
-        let session = user.session
-        console.log(session)
-        let updatedUser= await User.findByIdAndUpdate(user._id,session)
+        let updatedUser= await User.findByIdAndUpdate(user._id,)
+        console.log("updated user")
+        console.log(updatedUser)
+        return true;
+    
+      
+    }catch(error){
+      console.log(error);
+      return false;
+      
+    }
+
+}
+const updateUser = async (user,data)=>{
+ 
+    try{
+        let updatedData=data;
+        if(!data){
+            if(user.session.num){
+                let sessionNum = user.session.num +1;
+               user.session.num =sessionNum
+            }else{
+                user.session.num = 0;
+            }
+    
+            updatedData= user.session
+        }
+        
+        console.log(updatedData)
+        let updatedUser= await User.findByIdAndUpdate(user._id,updatedData)
         console.log("updated user")
         console.log(updatedUser.session)
         return true;
@@ -442,12 +463,22 @@ const updateUser = async (user)=>{
       
   }
 
-
+  const addTimetable=async(timetable)=>{
+ 
+     try{
+         let newTimetable= new Timetable(timetable);
+         let savedTimetable = await newTimetable.save(); 
+         return savedTimetable;
+     }catch(error){
+         console.log(error)
+     }
+ }
 
 
 const addUser=async(user_phone)=>{
    let date = new Date()
     let user={
+        id:uuidv1(),
         name:null,
         isOnboarding:false,
         grade:null,
@@ -455,13 +486,23 @@ const addUser=async(user_phone)=>{
         session:{
             flow:'onboarding',
             node:'start',
-            lastUpdated:date
+            num:0,
+            lastUpdated:date,
+            isActive:true,
+            chat:{
+              active:false,
+              partiipant:null
+            }
         }
     }
 
     try{
         let newUser= new User(user);
         let savedUser = await newUser.save(); 
+        if(savedUser){
+            let userTimetable = createTimetable(savedUser.id);
+            let timetable = await addTimetable(userTimetable);
+        }
         return savedUser;
     }catch(error){
         console.log(error)

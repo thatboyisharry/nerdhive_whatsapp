@@ -2,28 +2,19 @@ const mongoose = require("mongoose");
 
 
 const Schema = mongoose.Schema;
-const sessionSchema = new Schema(
-  {
-    flow:{type:String},
-    node:{type:String},
-    num:{type:String},
-    lastUpdated:{type:Date},
-    prevFlow:{type:String},
-    prevNode:{type:String},
-    isActive:{type:Boolean,default:false},
-    chat:{
-      active:{type:Boolean,default:false},
-      participant:{type:String}
-    },
-    data:{}
-  }
-)
 
 const UserSchema = new Schema(
   {
     id:{
       type:String,
       required:true,
+    },
+    name: {
+      type: String,
+      default:null,
+      min: 3,
+      max: 20,
+      unique: true,
     },
     username: {
       type: String,
@@ -92,10 +83,22 @@ const UserSchema = new Schema(
       default: false,
     },
     session:{
-        type: sessionSchema,
+      flow:{type:String},
+      node:{type:String},
+      num:{type:Number},
+      lastUpdated:{type:Date},
+      prevFlow:{type:String},
+      prevNode:{type:String},
+      isActive:{type:Boolean,default:false},
+      chat:{
+        active:{type:Boolean,default:false},
+        participant:{type:String}
+      },
+      data:{}
     }  
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", UserSchema);
+// module.exports = mongoose.model("User", UserSchema);
+module.exports= UserSchema

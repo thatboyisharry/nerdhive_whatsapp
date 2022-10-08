@@ -1,9 +1,4 @@
-// const { Flows } = require('../flows');
 const { templateActionsHandler } = require('../messages/templates');
-
-
-
-
 
 
  ////////////
@@ -13,7 +8,7 @@ const { templateActionsHandler } = require('../messages/templates');
     if(trigger){
         for(let i = 0; i< node.transitions.length;i++){
           let transition = node.transitions[i];
-          if(transition.name==trigger){
+          if(transition.trigger===trigger){
             console.log("transition")
             console.log(transition)
               return transition
@@ -23,30 +18,33 @@ const { templateActionsHandler } = require('../messages/templates');
             return transition
           }
         }
+      
+        if(node.sticky){
+          return null
+        }
+      
+       if(node.transitions.length==1){
+          return node.transitions[0]
+        }
+
     }
     
  
       // if we are just starting a new flow
     
       //if node has only one none response dependent transition
-   
-   
-    if(node.sticky){
-      return null
+   if(node.transitions.length==1){
+          return node.transitions[0]
     }
    
-    if(node.transitions.length==1){
-      return node.transitions[0]
-    }
+    
    if(node.name==='start'){
       console.log("node is start")
-      return node
+      return node;
     }
    
-   
-    return null
+    return null;
 }
-
 const getNode=(flow,node_name)=>{
 
     let nodes=flow.nodes

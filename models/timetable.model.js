@@ -22,8 +22,6 @@ const TimetableSchema = new Schema({
 })
 
 
-
-
-
-let Timetable = mongoose.model('Timetable',TimetableSchema);
-exports.Timetable = Timetable
+// let Timetable = mongoose.model('Timetable',TimetableSchema);
+// exports.Timetable = Timetable
+module.exports= TimetableSchema

@@ -1,7 +1,16 @@
 const mongoose = require("mongoose");
-const { FlowSchema } =require('./flow.model');
+
 
 const Schema = mongoose.Schema;
+
+const TemplateSchema = new Schema({
+    id:{
+        type:String
+    },
+    name:{type:String,required:true},
+    value:{type:{}},
+   
+})
 
 const ProjectSchema = new Schema(
     {
@@ -11,12 +20,16 @@ const ProjectSchema = new Schema(
             required:true,
         },
         flows:{
-            type:[FlowSchema]
+            type:[]
         },
         businessID:{
             type:String
-        }
+        },
+         templates:{
+            type:[TemplateSchema]
+        },
     }
 )
 
-module.exports = mongoose.model("Project", ProjectSchema);
+// module.exports = mongoose.model("Project", ProjectSchema);
+module.exports= ProjectSchema

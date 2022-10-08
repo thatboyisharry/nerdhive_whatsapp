@@ -21,7 +21,7 @@ const getUserResponse = (msg)=>{
     }
 
     if(type===BUTTON){
-        response=msg.button.payload;
+        response=msg.button.payload.toLowerCase();
     }
 
     if(type===TEXT){

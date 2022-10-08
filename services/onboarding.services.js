@@ -1,7 +1,6 @@
-const User = require("../models/user.model");
 require("../messages/templates");
-
-
+const dataConnection = require('../models/connections/data');
+const User=dataConnection.models.User;
 
 const onboardUser=async(user)=>{
   console.log("inside onboarding...")
@@ -158,6 +157,7 @@ const startOnboardingFlow=async(user)=>{
       node:'start',
       lastUpdated:date,
       num:0,
+      isActive:true
     }
   }
   return await updateUser(user,data);

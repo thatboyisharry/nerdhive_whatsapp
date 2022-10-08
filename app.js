@@ -14,7 +14,6 @@ express = require("express"),
 body_parser = require("body-parser"),
 axios = require("axios").default,
 app = express().use(body_parser.json()); // creates express http server
-const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
 const passport =require('passport');
@@ -88,16 +87,6 @@ app.use(passport.session());// authentication related
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
-let dbRoute=process.env.MONGO_URL;
-mongoose.connect(dbRoute);
-let db=mongoose.connection;
 
-
-db.once('open',async()=>{
-  console.log("Connected to the database");
-  routes(app,User);
-
-})
-  
-db.on('error',console.error.bind(console,'Connection to database failed'));
+routes(app,User);
 

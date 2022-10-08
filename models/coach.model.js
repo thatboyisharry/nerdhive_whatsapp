@@ -12,5 +12,6 @@ const CoachSchema = new Schema({
 })
 
 
-let Coach = mongoose.model('Coach',CoachSchema);
-exports.Coach = Coach
+// let Coach = mongoose.model('Coach',CoachSchema);
+// exports.Coach = Coach
+module.exports= CoachSchema

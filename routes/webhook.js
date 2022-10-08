@@ -2,6 +2,7 @@ const express = require('express');
 const { getUser,getProject} = require('../services/apiCalls');
 const router=express.Router();
 const { getUserResponse,getBotResponses,sendResponse,updateStatus, NerdHiveDialogEngine } = require('../dialogEngine');
+const { createUserCode } = require('../services/utils');
  
 // Access token for your app
 // (copy token from DevX getting started page
@@ -41,6 +42,10 @@ router.post("/",async(req,res)=>{
             try{
               await updateStatus(phone_number_id,token,msg,"read")
               let user = await getUser(user_num);
+              if(!user.userCode){
+                await createUserCode(user);
+                user = await getUser(user_num);
+              }
               await NerdHiveDialogEngine(msg,user,project_flows)
             }catch(error){
               console.log(error);

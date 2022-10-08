@@ -1,26 +1,48 @@
-const User = require("../models/user.model");
-
-
+const dataConnection = require('../models/connections/data');
+const User=dataConnection.models.User;
 
 const onboardingActions=async(action,user_response,user)=>{
-  let action_status
   
-  if(action==='saveName'){
+  if(action.name==='isLearner'){
+    let success = await isLearner(user);
+    if(success){
+      return action.onSuccess
+    }else{
+        return action.onFailure
+    }
+  }
+  if(action.name==='saveName'){
     console.log("saving name")
-    action_status = await saveName(user,user_response);
+    let success = await saveName(user,user_response);
+    if(success){
+      return action.onSuccess
+    }else{
+        return action.onFailure
+    }
   }
-  if(action=='isLandlord'){
-    action_status = await isLandlord(user);
+  if(action.name==='isParent'){
+    let success = await isParent(user);
+    if(success){
+      return action.onSuccess
+    }else{
+        return action.onFailure
+    }
   }
   
-  if(action=='isTenant'){r
-    action_status = await isTenant(user);
-  }
-  if(action==="doneOnboarding"){
-    action_status = await doneOnboarding(user)
+  if(action.name==="saveGrade"){
+    let success = await saveGrade(user,user_response);
+    if(success){
+      return action.onSuccess
+    }else{
+        return action.onFailure
+    }
   }
   
-  return action_status
+  if(action.name==="doneOnboarding"){
+    let success = await doneOnboarding(user)
+  }
+  return ""
+ 
 }
 
 
@@ -53,6 +75,20 @@ const saveName=async(user,name)=>{
     
 }
 ////////////////////////////////////
+const saveGrade=async(user,grade)=>{
+  
+  let data={
+    grade:grade
+  }
+  
+  let status = await updateUser(user,data);
+  
+  return status
+  
+    
+}
+
+/////////////////////////////////////
 
 const doneOnboarding=async(user)=>{
   
@@ -69,30 +105,15 @@ const doneOnboarding=async(user)=>{
 }
 
 //////////////////////////
-const isLandlord=async(user)=>{
+const isParent=async(user)=>{
   
   let data={
-    isLandlord:true
+    isParent:true
   }
   
   let status = await updateUser(user,data);
   
-  return status
-  
-    
-}
-
-
-/////////////////////
-const isTenant=async(user)=>{
-  
-  let data={
-    isTenant:true
-  }
-  
-  let status = await updateUser(user,data);
-  
-  return status
+  return status;
   
     
 }

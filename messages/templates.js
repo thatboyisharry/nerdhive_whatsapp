@@ -14,22 +14,26 @@ const templateActionsHandler=async(message,user)=>{
       let appointments = getWeelkyAppointments(timetable)
       //get lessons from all appointments from current day to sunday
       let lessons=[]
-      for (let j = 0 ; j < appointments.length; j++){
-        let appointment=appointments[j]
-        let lessonId = appointment.lessonId;
-        let lesson = await getLesson(lessonId);
-        lessons.push(lesson)
-      }
-      //fill templates with lesson details and return an array of templates
-      for(let i = 0 ; i < lessons.length; i++){
-        filledTemplate = await  upcomingLessonsTemplate(template,lessons[i])
-        message.template=filledTemplate
-        messages.push(message);
+      if(appointments.length>0){
+        for (let j = 0 ; j < appointments.length; j++){
+          let appointment=appointments[j]
+          let lessonId = appointment.lessonId;
+          let lesson = await getLesson(lessonId);
+          lessons.push(lesson)
+        }
+        //fill templates with lesson details and return an array of templates
+        for(let i = 0 ; i < lessons.length; i++){
+          filledTemplate = await  upcomingLessonsTemplate(template,lessons[i])
+          message.template=filledTemplate
+          messages.push(message);
+        }
+        
       }
       
       
       return messages
-
+      
+    
     }
 
     
@@ -46,13 +50,9 @@ const templateActionsHandler=async(message,user)=>{
       message.template = filledTemplate;
       return message;
     }
-
-    // if(template.name==='landlord_or_renter'){
-    //     filledTemplate = await landlordOrRenter_Actions(template,user)
-    // }
     
-    message.template=filledTemplate
-    return message.template=filledTemplate
+    
+    return message
 
 }
 
@@ -116,11 +116,6 @@ const confirmTimeChangesTemplate=async(template,user)=>{
 return template
 
 }
-// const landlordOrRenter_Actions = async(template,user)=>{
-    
-//     template.components[0].parameters[0].text=user.name;
-//     return template
-// }
 
 module.exports={
   templateActionsHandler

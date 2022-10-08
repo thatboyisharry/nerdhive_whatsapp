@@ -19,7 +19,7 @@ const objectiveSchema = new Schema({
     objective:{type:String}
 })
 
-const lessonSchema = new Schema({
+const LessonSchema = new Schema({
     id:{type:String,required:true},
     lessonCode:{type:String,required:true},
     learnerId:{type:String,required:true},
@@ -37,5 +37,7 @@ const lessonSchema = new Schema({
     tutorReview:{type:reviewSchema}
 })
 
-exports.lessonSchema=lessonSchema;
-exports.Lesson = mongoose.models.Lesson || mongoose.model('Lesson',lessonSchema);
+// exports.LessonSchema=LessonSchema;
+// exports.Lesson = mongoose.models.Lesson || mongoose.model('Lesson',LessonSchema);
+
+module.exports= LessonSchema

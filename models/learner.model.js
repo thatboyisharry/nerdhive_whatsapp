@@ -20,7 +20,7 @@ const profileSchema = new Schema({
 
 
 
-const learnerSchema = new Schema({
+const LearnerSchema = new Schema({
     userId:{type:String,required:true},
     learnerCode:{type:String},
     parentId:{type:String,required:true},
@@ -42,5 +42,9 @@ const learnerSchema = new Schema({
 
 
 
-exports.learnerSchema=learnerSchema;
-exports.Learner = mongoose.models.Learner || mongoose.model('Learner',learnerSchema);
+
+
+// exports.LearnerSchema=LearnerSchema;
+// exports.Learner = mongoose.models.Learner || mongoose.model('Learner',LearnerSchema);
+
+module.exports= LearnerSchema
