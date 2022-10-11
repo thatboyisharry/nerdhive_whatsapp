@@ -1,4 +1,4 @@
-const { startChat } = require("../dialogEngine");
+const { startChat } = require("../dialogEngine/startChat");
 const { getChatUser, getLearner, getLearnerCoach, getUser, getCoach, getParent } = require("../services/apiCalls");
 
 
@@ -24,13 +24,14 @@ const openChat=async(user,code)=>{
         }else if(user.isLearner){
             let learner = await getLearner(user.id)
             let coach = await getLearnerCoach(learner);
-            let coachUser = await getUser(coach.phone)
+            let coachUser = await getUser(coach.userId)
             res = await startChat(coachUser.userCode,user)
         }else if(user.isParent){
             let parent = await getParent(user.id);
             let coach = await getCoach(parent.coach);
-            let coachUser = await getUser(coach.phone)
+            let coachUser = await getUser(coach.userId)
             res = await startChat(coachUser.userCode,user)
+
         }
         
         return res

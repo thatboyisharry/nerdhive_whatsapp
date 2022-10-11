@@ -23,9 +23,12 @@ const templateActionsHandler=async(message,user)=>{
         }
         //fill templates with lesson details and return an array of templates
         for(let i = 0 ; i < lessons.length; i++){
-          filledTemplate = await  upcomingLessonsTemplate(template,lessons[i])
+          let lesson=lessons[i]
+          filledTemplate = await  upcomingLessonsTemplate(template,lesson)
           message.template=filledTemplate
-          messages.push(message);
+          let msg= JSON.parse(JSON.stringify(message));
+          messages.push(msg);
+          console.log(messages[i].template.components[0].parameters[0])
         }
         
       }

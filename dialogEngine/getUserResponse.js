@@ -31,8 +31,31 @@ const getUserResponse = (msg)=>{
     if(type==='image'){
         
         response=msg.image.id;
-        //write logic to extract the image from the msg
+        
     }
+  
+    if(type==='document'){
+        
+        response=msg.document.id;
+        
+    }
+  
+    if(type==='audio'){
+        
+        response=msg.audio.id;
+        
+    }
+  
+    if(type==='video'){
+        
+        response=msg.video.id;
+        
+    }
+  
+  
+    
+  
+  
 
 
     return response;

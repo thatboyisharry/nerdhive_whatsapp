@@ -98,8 +98,12 @@ const getResponses=async(next_node,user)=>{
         if(bot_response.type==='template'){
           bot_response=await addParameters(bot_response,user)
         }
-        if(bot_response.isArray){
-          responses = responses.concat(bot_response);
+        if(Array.isArray(bot_response)){
+          for(let j = 0; j < bot_response.length ; j++){
+            let msg = bot_response[j]
+            responses.push(msg);
+          }
+          
         }else{
           responses.push(bot_response);
         }

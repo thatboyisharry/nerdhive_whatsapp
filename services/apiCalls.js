@@ -10,7 +10,7 @@ const Parent=dataConnection.models.Parent;
 const Timetable=dataConnection.models.Timetable;
 const Job=dataConnection.models.Job;
 const {v1} =require('uuid');
-const { createTimetable } = require('./utils');
+const { createTimetable,createUser } = require('./utils');
 const uuidv1 = v1;
 
 
@@ -20,6 +20,7 @@ const createDummyData=async()=>{
     let user1={
         id:'LEARNER100',
         name:'Harold',
+        isLearner:true,
         isOnboarding:false,
         userCode:"HAR9604",
         grade:'12',
@@ -40,6 +41,7 @@ const createDummyData=async()=>{
         id:'COACH100',
         name:'JAY',
         userCode:'JAY404',
+        isCoach:true,
         isOnboarding:false,
         grade:'12',
         phone:'27681508705',
@@ -286,6 +288,7 @@ const addCoach=async(coach)=>{
         console.log(error)
     }
 }
+
 const getCoach = async(userId)=>{
     try{
         let coach = await Coach.findOne({userId:userId})
@@ -296,6 +299,18 @@ const getCoach = async(userId)=>{
        
     }catch(error){
         console.log(error);
+    }
+}
+
+const addTutor=async(tutor)=>{
+
+    try{
+        let newTutor= new Tutor(tutor)
+        let savedTutor = await newTutor.save(); 
+        console.log(savedTutor);
+        return true
+    }catch(error){
+        console.log(error)
     }
 }
 
@@ -317,17 +332,14 @@ const getLearnerCoach = async(learner)=>{
         let coaches = await Coach.find({})
         if(coaches!==null){
         
-            console.log("found coaches")
             for(let i = 0; i<coaches.length;i++){
                 let coach=coaches[i]
-                for(let j = 0 ;j < coach.learners.length ; i++){
+                for(let j = 0 ;j < coach.learners.length ; j++){
                     if(coach.learners[j]===learner.userId){
                         return coach
                     }
                 }
             }
-            coaches=coaches.filter(lesson=>lesson.learnerId!==learner.userId)
-            return coaches
         
         }
        
@@ -655,9 +667,11 @@ const updateUser = async (user,data)=>{
         }
         
         console.log(updatedData)
-        let updatedUser= await User.findByIdAndUpdate(user._id,updatedData)
+      let userObj= await User.findOne({_id:user._id})
+      userObj.session=updatedData
+      let updatedUser=await userObj.save();
         console.log("updated user")
-        console.log(updatedUser.session)
+        console.log(updatedUser)
         return true;
     
       
@@ -668,6 +682,7 @@ const updateUser = async (user,data)=>{
     }
       
   }
+
 
   const addTimetable=async(timetable)=>{
  

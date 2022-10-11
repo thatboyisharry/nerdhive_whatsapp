@@ -29,14 +29,22 @@ const NerdHiveDialogEngine=async(msg,user,project_flows)=>{
         let user_response= await getUserResponse(msg);
         let go_to_prev_or_menu = await goToPrevOrMenu(user,user_response)
         let bot_response;
+         // check if user want to go back or back to menu
         if(go_to_prev_or_menu){
           let updatedUser = await getUser(user.phone);
           bot_response = await getBotResponses(updatedUser,user_text,project_flows);
         }else{
           bot_response = await getBotResponses(user,user_response,project_flows); 
         }
-        await sendResponse(phone_number_id,token,user.phone,bot_response)
-       
+
+        // check if user have activated chat
+        let updatedUser = await getUser(user.phone);
+        if(updatedUser.session.chat.active){
+          let participant = user.session.chat.participant;
+          await sendResponse(phone_number_id,token,participant,bot_response)
+        }else{
+          await sendResponse(phone_number_id,token,user.phone,bot_response)
+        }
       }catch(error){
         console.log(error)
       }
@@ -59,6 +67,8 @@ const NerdHiveDialogEngine=async(msg,user,project_flows)=>{
         }catch(err){
           console.log(err)
         }
+        
+        
       }
       if(user.isTutor){
         try{

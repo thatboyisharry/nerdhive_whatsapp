@@ -2,14 +2,32 @@
 const getWeelkyAppointments=(timetable)=>{
     let appointments=[];
     
-    appointments=timetable.monday.length>0?appointments.push(timetable.monday):appointments
-    appointments=timetable.tuesday.length>0?appointments.push(timetable.tuesday):appointments
-    appointments=timetable.wednesday.length>0?appointments.push(timetable.wednesday):appointments
-    appointments=timetable.thursday.length>0?appointments.push(timetable.thursday):appointments
-    appointments=timetable.friday.length>0?appointments.push(timetable.friday):appointments
-    appointments=timetable.saturday.length>0?appointments.push(timetable.saturday):appointments
-    appointments=timetable.sunday.length>0?appointments.push(timetable.sunday):appointments
 
+    if(timetable.monday.length>0){
+        appointments.push(timetable.monday)
+    }
+
+    if(timetable.tuesday.length>0){
+        appointments.push(timetable.tuesday)
+    }
+
+    if(timetable.wednesday.length>0){
+        appointments.push(timetable.wednesday)
+    }
+    if(timetable.thursday.length>0){
+        appointments.push(timetable.thursday)
+    }
+    if(timetable.friday.length>0){
+        appointments.push(timetable.friday)
+    }
+    if(timetable.saturday.length>0){
+        appointments.push(timetable.saturday)
+    }
+
+    if(timetable.sunday.length>0){
+        appointments.push(timetable.sunday)
+    }
+    
     return appointments
 
 }
