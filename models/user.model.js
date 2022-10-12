@@ -93,6 +93,7 @@ const UserSchema = new Schema(
       helpRequest:{
         invite:{type:Boolean,default:false},
         requestId:{type:String},
+        learnerId:{type:String},
       },
       chat:{
         invite:{type:Boolean,default:false},

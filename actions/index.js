@@ -1,4 +1,5 @@
 const { createLessonFlowActions } = require('./createLesson.actions');
+const { helpRequestFlowActions } = require('./helpRequest.actions');
 const { homeworkAssistanceFlowActions } = require('./homeworkAssistance.actions');
 const { learnerMenuFlowActions } = require('./learnerMenu.actions');
 const { onboardingActions } = require('./onboarding.actions');
@@ -25,6 +26,10 @@ const actionsHandler= async(node,user_response,user)=>{
     let trigger=" ";
     if(node.flow==='homework_assistance'){
       trigger=await homeworkAssistanceFlowActions(action,user_response,user)
+    }
+
+    if(node.flow==='help_request'){
+      trigger=await helpRequestFlowActions(action,user_response,user)
     }
     if(node.flow==='learner_menu'){
       trigger=await learnerMenuFlowActions(action,user_response,user)

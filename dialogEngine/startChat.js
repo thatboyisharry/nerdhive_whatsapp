@@ -33,6 +33,10 @@ const startChat=async(code,chatInitiator)=>{
             chatInitiator.session.chat.invite=false;
             chatInitiator.session.chat.active=true;
             chatInitiator.session.chat.participant=clientUser.phone;
+            // if this is coming from a help request invite, turn off the invite boolean
+            if(chatInitiator.session.helpRequest.invite){
+                chatInitiator.session.helpRequest.invite=false;
+            }
             await updateUser(clientUser);
             await updateUser(chatInitiator);
             return true;
